@@ -37,6 +37,24 @@ button:hover{
   justify-content: center;
 }
 
+.character{
+  border-radius: 30px;
+  height: 180px;
+  width: 180px;
+}
+
+.character-buttons{
+  width:100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.title{
+  margin-top: -200px;
+  margin-bottom: 100px;
+  font-size: 50px;
+}
+
 .game-selection{
   height: 100vh;
   display: flex;
