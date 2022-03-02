@@ -4,6 +4,9 @@ body{
   overflow-y: hidden;
 }
 
+button:hover{
+  cursor: pointer;
+}
 .game-play{
   display: flex;
   justify-content: space-between;
@@ -24,4 +27,22 @@ body{
   display:flex;
   flex-direction: column;
   align-items: center;
+}
+
+.choose-character{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+
+
+
+
+.hidden{
+  display: none;
 }
