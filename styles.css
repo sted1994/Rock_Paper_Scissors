@@ -9,7 +9,7 @@ button:hover{
 }
 .game-play{
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 
 .options{
@@ -20,6 +20,34 @@ button:hover{
   display:flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+}
+
+.gameplay-buttons{
+  margin-bottom: 15px;
+  height: 60px;
+  width: 150px;
+  border-radius: 10px;
+}
+
+.weapon-img{
+  width: 100px;
+}
+
+.weapon-button{
+  height: 120px;
+  width: 120px;
+  border-radius: 100%;
+}
+
+.wepons{
+  display: grid;
+  grid-template-columns: 115px 115px;
+  gap:10px;
+}
+
+.classic-margin{
+  margin-left: 60px;
 }
 
 .score{
@@ -81,6 +109,30 @@ button:hover{
   display: flex;
   flex-direction: column;
 }
+
+.player-score{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding-right: 40px; */
+}
+
+.computer-score{
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-characters{
+  margin-top: 175px;
+}
+
+.gameplay-text{
+  font-size: 40px;
+}
+
 
 .hidden{
   display: none;

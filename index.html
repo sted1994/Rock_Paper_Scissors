@@ -14,7 +14,7 @@
         <button class="big-button"><img src="./assets/Woman_emoji.png" alt=""></button>
       </div>
     </section>
-    <section class="game-selection ">
+    <section class="game-selection hidden">
       <div class="title">
         <p>Choose Your Game Mode</P>
       </div>
@@ -29,32 +29,38 @@
         </div>
       </div>
     </section>
-    <section class="game-play hidden">
-      <aside class="score">
-        <p>Your score:</p>
-        <p>Holder score</p>
-        <img src="./assets/Man_emoji.png" alt="Your character">
+    <section class="game-play ">
+      <aside class="player-score">
+        <div>
+          <p class="gameplay-text">Your score:</p>
+        </div>
+        <div class="game-characters">
+          <img src="./assets/Man_emoji.png" alt="Your character">
+        </div>
       </aside>
       <main class="options">
         <section>
-          <p>Pick Yourr Weapon</p>
+          <p class="gameplay-text">Pick Yourr Weapon</p>
         </section>
         <section class="wepons">
-          <button><img src="./assets/Rock_emoji.png" alt=""></button>
-          <button><img src="./assets/Paper_emoji.png" alt=""></button>
-          <button><img src="./assets/Scissor_emoji.png" alt=""></button>
+          <button class="weapon-button"><img class="weapon-img" src="./assets/Rock_emoji.png" alt=""></button>
+          <button class="weapon-button"><img class="weapon-img" src="./assets/Paper_emoji.png" alt=""></button>
+          <button class="weapon-button classic-margin"><img class="weapon-img" src="./assets/Scissor_emoji.png" alt=""></button>
         </section>
         <section>
-          <button>Change Game</button>
-          <button>Reset Score</button>
+          <button class="gameplay-buttons">Change Game</button>
+          <button class="gameplay-buttons">Reset Score</button>
         </section>
       </main>
-      <aside class="score">
-        <p>Computer score:</p>
-        <p>Holder score</p>
-        <img src="./assets/Computer_emoji.png" alt="Your character">
+      <aside class="computer-score">
+        <div>
+          <p class="gameplay-text">Computer score:</p>
+        </div>
+        <div class="game-characters">
+          <img src="./assets/Computer_emoji.png" alt="Your character">
+        </div>
       </aside>
-  </section>
+    </section>
   </body>
   <script type="text/javascript" src="player.js"></script>
   <script type="text/javascript" src="game.js"></script>
