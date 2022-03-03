@@ -3,31 +3,30 @@ var manCharater = document.querySelector('.man');
 var womenCharater = document.querySelector('.woman')
 var gameSelectionPage = document.querySelector('.game-selection');
 var chosenCharacter = document.querySelector('.chosen-character');
+var computerIcon = document.querySelector('.user-opponent');
 var gameplayPage = document.querySelector('.gameplay');
 var classicModeButton = document.querySelector('.classic');
 var malaysianModeButton = document.querySelector('.malaysian');
 var classicRulesButton = document.querySelector('.classic-rules');
 var malaysianRulesButton = document.querySelector('.malaysian-rules');
-var classicButtons = document.querySelectorAll('.game-modes');
 var characterSelectionPage = document.querySelector('.choose-character');
-var scissorImg = document.querySelector('.scissor-img');
-var rockImg = document.querySelector('.rock-img');
-var paperImg = document.querySelector('.paper-img');
 var weapons = document.querySelector('.weapons')
 var changeGameButton = document.querySelector('.change-game')
-var allWeapons = document.querySelectorAll('.weapon-button')
-var allWeaponstest = document.querySelectorAll('.weapons')
+var humanScore = document.querySelector('.human-score')
+var computerScore = document.querySelector('.machine-score')
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 manCharater.addEventListener('click', function(){
   displayGameSelection(event);
   assignPlayerChar(event);
-  makeNewPlayer(event);
+  // makeNewPlayer(event);
+  assignComputerChar()
 })
 
 womenCharater.addEventListener('click', function(){
   displayGameSelection(event);
   assignPlayerChar(event);
-  makeNewPlayer(event);
+  // makeNewPlayer(event);
+  assignComputerChar()
 })
 
 classicModeButton.addEventListener('click', function(event){
@@ -85,8 +84,22 @@ function countClicks(event){
 }
 
 function assignPlayerChar(event){
+  var newPlayer = new Player()
+  newPlayer.name = event.target.parentElement.classList[0];
+  newPlayer.token = event.target.src;
   chosenCharacter.src = event.target.src;
   chosenCharacter.classList.add('game-characters');
+  humanScore.innerText += newPlayer.wins
+  return newPlayer
+}
+
+function assignComputerChar(){
+  var computerChar = new Player;
+  computerChar.name = "computer";
+  computerChar.token = "./assets/Computer_emoji.png";
+  computerIcon.src = computerChar.token
+  computerScore.innerText += computerChar.wins
+  return computerChar
 }
 
 function displayGameSelection(event){
@@ -114,11 +127,12 @@ function displayMalaysianGame(){
   generateMalaysianGame();
 }
 
-function makeNewPlayer(event){
-  var newPlayer = new Player()
-  newPlayer.name = event.target.parentElement.classList[0];
-  newPlayer.token = event.target.src;
-}
+// function makeNewPlayer(event){
+//   var newPlayer = new Player()
+//   newPlayer.name = event.target.parentElement.classList[0];
+//   newPlayer.token = event.target.src;
+//   return newPlayer
+// }
 
 function generateRules(rules){
   return `<button class="classic big-button" style="font-size: 20px">${rules}</button>`
