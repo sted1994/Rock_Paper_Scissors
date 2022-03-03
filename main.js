@@ -59,15 +59,13 @@ weapons.addEventListener('click', function(event){
 })
 
 changeGameButton.addEventListener('click', function(){
-  countClicks(event)
-  console.log(gameSelectionCounter)
+  countClicks(event);
   displayGameSelection();
 })
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var classicRuleClicks = 0;
 var malaysianRuleClicks = 0;
-var gameSelectionCounter = 0;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function hideElement(htmlElement){
@@ -83,8 +81,6 @@ function countClicks(event){
     classicRuleClicks++
   } else if(event.target.classList[0] === 'malaysian-rules'){
     malaysianRuleClicks++
-  } else if(event.target.classList[0] === 'change-game'){
-    gameSelectionCounter++
   }
 }
 
@@ -94,37 +90,28 @@ function assignPlayerChar(event){
 }
 
 function displayGameSelection(event){
+  weapons.innerHTML = ""
   hideElement(characterSelectionPage);
   showElement(gameSelectionPage);
   hideElement(gameplayPage);
 }
 
-function displayClassicGame(){
+function displayGame(){
   showElement(gameplayPage);
   hideElement(gameSelectionPage);
   hideElement(characterSelectionPage);
 }
 
-function transformImg(currentImg, newImg){
-  if(currentImg === scissorImg){
-    currentImg.parentElement.classList.remove('classic-margin');
-    currentImg.classList.add(`scissor-img`)
-    currentImg.src = `./assets/${newImg}_emoji.png`
-  } else{
-    currentImg.classList.remove(currentImg.classList[0]);
-    currentImg.classList.add(`${newImg}-img`)
-    currentImg.src = `./assets/${newImg}_emoji.png`
-  }
+function displayClassicGame(){
+  weapons.innerHTML = "";
+  displayGame()
+  generateClassicGame();
 }
 
 function displayMalaysianGame(){
-  displayClassicGame();
-  transformImg(paperImg, "Bird")
-  transformImg(scissorImg, "Water")
-  if(gameSelectionCounter < 1){
-    weapons.innerHTML += `
-    <button class="weapon-button"><img class="worm-img" src="./assets/Worm_emoji.png" alt=""></button>`
-  }
+  weapons.innerHTML = ""
+  displayGame()
+  generateMalaysianGame();
 }
 
 function makeNewPlayer(event){
@@ -135,6 +122,29 @@ function makeNewPlayer(event){
 
 function generateRules(rules){
   return `<button class="classic big-button" style="font-size: 20px">${rules}</button>`
+}
+
+function generateWeapon(weaponName){
+  var imgClass = weaponName.toLowerCase()
+   if(weaponName === "Paper"){
+     return `<button class="weapon-button classic-margin"><img class="paper-img" src="./assets/Paper_emoji.png" alt=""></button>`
+   } else {
+     return `<button class="weapon-button"><img class="${imgClass}-img" src="./assets/${weaponName}_emoji.png" alt=""></button>`
+   }
+}
+
+function generateClassicGame(){
+  var classicWeapons = [generateWeapon('Rock'),generateWeapon('Scissor'),generateWeapon('Paper')]
+    for(var i = 0; i < 3; i ++){
+      weapons.innerHTML += classicWeapons[i]
+    }
+}
+
+function generateMalaysianGame(){
+  var malaysianWeapons = [generateWeapon('Rock'),generateWeapon('Bird'),generateWeapon('Water'),generateWeapon('Worm')]
+    for(var i = 0; i < 4; i ++){
+      weapons.innerHTML += malaysianWeapons[i]
+    }
 }
 
 function showRules(event){
