@@ -7,7 +7,7 @@ body{
 button:hover{
   cursor: pointer;
 }
-.game-play{
+.gameplay{
   display: flex;
   justify-content: space-evenly;
 }
@@ -30,17 +30,19 @@ button:hover{
   border-radius: 10px;
 }
 
-.weapon-img{
+.rock-img,
+.scissor-img,
+.paper-img{
   width: 100px;
 }
 
 .weapon-button{
   height: 120px;
   width: 120px;
-  border-radius: 100%;
+  border-radius: 25px;
 }
 
-.wepons{
+.weapons{
   display: grid;
   grid-template-columns: 115px 115px;
   gap:10px;
@@ -70,6 +72,8 @@ button:hover{
   height: 180px;
   width: 180px;
   font-size: 35px;
+  inline-size: 180px;
+  overflow-wrap: break-word;
 }
 
 .character-buttons{
@@ -88,6 +92,7 @@ button:hover{
   font-size: 25px;
   border-radius: 15px;
   margin-top: 15px;
+  width: 180px;
 }
 
 .game-selection{
@@ -105,7 +110,8 @@ button:hover{
   justify-content: space-evenly;
 }
 
-.game-button{
+.classic-game-button,
+.malaysian-game-button{
   display: flex;
   flex-direction: column;
 }
@@ -115,7 +121,6 @@ button:hover{
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding-right: 40px; */
 }
 
 .computer-score{
@@ -133,6 +138,9 @@ button:hover{
   font-size: 40px;
 }
 
+.play-button{
+  content: "PLAY"
+}
 
 .hidden{
   display: none;

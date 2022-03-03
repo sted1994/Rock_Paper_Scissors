@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
-   <section class="choose-character hidden">
+   <section class="choose-character">
       <div class="title">
         <p>Please Choose Your Character!</p>
       </div>
       <div class="character-buttons">
-        <button class="big-button"><img src="./assets/Man_emoji.png" alt=""></button>
-        <button class="big-button"><img src="./assets/Woman_emoji.png" alt=""></button>
+        <button class="man big-button"><img src="./assets/Man_emoji.png" alt=""></button>
+        <button class="woman big-button"><img src="./assets/Woman_emoji.png" alt=""></button>
       </div>
     </section>
     <section class="game-selection hidden">
@@ -19,33 +19,41 @@
         <p>Choose Your Game Mode</P>
       </div>
       <div class="game-modes">
-        <div class="game-button">
-          <button class="big-button">Classic</button>
-          <button class="rules">Rules</button>
+        <div class="classic-game-button">
+          <div>
+            <button class="classic big-button">Classic</button>
+          </div>
+          <div>
+            <button class="classic-rules rules">Rules</button>
+          </div>
         </div>
-        <div class="game-button">
-          <button class="big-button">Malaysian</button>
-          <button class="rules">Rules</button>
+        <div class="malaysian-game-button">
+          <div>
+            <button class="malaysian big-button">Malaysian</button>
+          </div>
+          <div>
+            <button class="malaysian-rules rules">Rules</button>
+          </div>
         </div>
       </div>
     </section>
-    <section class="game-play ">
+    <section class="gameplay hidden">
       <aside class="player-score">
         <div>
           <p class="gameplay-text">Your score:</p>
         </div>
-        <div class="game-characters">
-          <img src="./assets/Man_emoji.png" alt="Your character">
+        <div>
+          <img class="chosen-character" src="" alt="Your character">
         </div>
       </aside>
       <main class="options">
         <section>
           <p class="gameplay-text">Pick Yourr Weapon</p>
         </section>
-        <section class="wepons">
-          <button class="weapon-button"><img class="weapon-img" src="./assets/Rock_emoji.png" alt=""></button>
-          <button class="weapon-button"><img class="weapon-img" src="./assets/Paper_emoji.png" alt=""></button>
-          <button class="weapon-button classic-margin"><img class="weapon-img" src="./assets/Scissor_emoji.png" alt=""></button>
+        <section class="weapons">
+          <button class="weapon-button"><img class="rock-img" src="./assets/Rock_emoji.png" alt=""></button>
+          <button class="weapon-button"><img class="paper-img" src="./assets/Paper_emoji.png" alt=""></button>
+          <button class="weapon-button classic-margin"><img class="scissor-img" src="./assets/Scissor_emoji.png" alt=""></button>
         </section>
         <section>
           <button class="gameplay-buttons">Change Game</button>
