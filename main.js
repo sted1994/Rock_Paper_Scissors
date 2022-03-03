@@ -1,6 +1,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DOM Elements~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var manCharater = document.querySelector('.man');
-var womenCharater = document.querySelector('.woman')
+var womenCharater = document.querySelector('.woman');
 var gameSelectionPage = document.querySelector('.game-selection');
 var chosenCharacter = document.querySelector('.chosen-character');
 var computerIcon = document.querySelector('.user-opponent');
@@ -10,51 +10,60 @@ var malaysianModeButton = document.querySelector('.malaysian');
 var classicRulesButton = document.querySelector('.classic-rules');
 var malaysianRulesButton = document.querySelector('.malaysian-rules');
 var characterSelectionPage = document.querySelector('.choose-character');
-var weapons = document.querySelector('.weapons')
-var changeGameButton = document.querySelector('.change-game')
-var humanScore = document.querySelector('.human-score')
-var computerScore = document.querySelector('.machine-score')
+var weapons = document.querySelector('.weapons');
+var changeGameButton = document.querySelector('.change-game');
+var humanScore = document.querySelector('.human-score');
+var computerScore = document.querySelector('.machine-score');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 manCharater.addEventListener('click', function(){
   displayGameSelection(event);
   assignPlayerChar(event);
-  // makeNewPlayer(event);
-  assignComputerChar()
+  assignComputerChar();
 })
 
 womenCharater.addEventListener('click', function(){
   displayGameSelection(event);
   assignPlayerChar(event);
-  // makeNewPlayer(event);
-  assignComputerChar()
+  assignComputerChar();
 })
 
 classicModeButton.addEventListener('click', function(event){
-  displayClassicGame()
+  displayClassicGame();
+  newGame.game = 'classic'
+  newGame.computerPick();
 })
 
 malaysianModeButton.addEventListener('click', function(event){
-  displayMalaysianGame()
+  displayMalaysianGame();
+  newGame.game = 'malaysian'
+  newGame.computerPick();
 })
 
 malaysianRulesButton.addEventListener('click', function(event){
   countClicks(event);
-  showRules(event)
+  showRules(event);
   if(malaysianRuleClicks >= 2){
     displayMalaysianGame();
+    newGame.game = 'malaysian'
+    newGame.computerPick();
   }
 })
 
 classicRulesButton.addEventListener('click', function(event){
   countClicks(event);
-  showRules(event)
+  showRules(event);
   if(classicRuleClicks >= 2){
     displayClassicGame();
+    newGame.game = 'classic'
+    newGame.computerPick();
   }
 })
 
 weapons.addEventListener('click', function(event){
-  console.log(event.target)
+  newGame.players[0].weaponPick = event.target.classList;
+  newGame.computerPick()
+  newGame.findWinner()
+  newGame.calculateScore()
 })
 
 changeGameButton.addEventListener('click', function(){
@@ -65,6 +74,7 @@ changeGameButton.addEventListener('click', function(){
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var classicRuleClicks = 0;
 var malaysianRuleClicks = 0;
+var newGame = new Game();
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function hideElement(htmlElement){
@@ -77,33 +87,31 @@ function showElement(htmlElement){
 
 function countClicks(event){
   if(event.target.classList[0] === 'classic-rules'){
-    classicRuleClicks++
+    classicRuleClicks++;
   } else if(event.target.classList[0] === 'malaysian-rules'){
-    malaysianRuleClicks++
+    malaysianRuleClicks++;
   }
 }
 
 function assignPlayerChar(event){
-  var newPlayer = new Player()
+  var newPlayer = new Player();
   newPlayer.name = event.target.parentElement.classList[0];
   newPlayer.token = event.target.src;
   chosenCharacter.src = event.target.src;
   chosenCharacter.classList.add('game-characters');
-  humanScore.innerText += newPlayer.wins
-  return newPlayer
+  newGame.players.push(newPlayer);
 }
 
 function assignComputerChar(){
   var computerChar = new Player;
-  computerChar.name = "computer";
-  computerChar.token = "./assets/Computer_emoji.png";
-  computerIcon.src = computerChar.token
-  computerScore.innerText += computerChar.wins
-  return computerChar
+  computerChar.name = 'computer';
+  computerChar.token = './assets/Computer_emoji.png';
+  computerIcon.src = computerChar.token;
+  newGame.players.push(computerChar);
 }
 
 function displayGameSelection(event){
-  weapons.innerHTML = ""
+  weapons.innerHTML = '';
   hideElement(characterSelectionPage);
   showElement(gameSelectionPage);
   hideElement(gameplayPage);
@@ -116,59 +124,53 @@ function displayGame(){
 }
 
 function displayClassicGame(){
-  weapons.innerHTML = "";
-  displayGame()
+  weapons.innerHTML = '';
+  displayGame();
   generateClassicGame();
 }
 
 function displayMalaysianGame(){
-  weapons.innerHTML = ""
-  displayGame()
+  weapons.innerHTML = '';
+  displayGame();
   generateMalaysianGame();
 }
 
-// function makeNewPlayer(event){
-//   var newPlayer = new Player()
-//   newPlayer.name = event.target.parentElement.classList[0];
-//   newPlayer.token = event.target.src;
-//   return newPlayer
-// }
-
-function generateRules(rules){
-  return `<button class="classic big-button" style="font-size: 20px">${rules}</button>`
-}
 
 function generateWeapon(weaponName){
   var imgClass = weaponName.toLowerCase()
-   if(weaponName === "Paper"){
-     return `<button class="weapon-button classic-margin"><img class="paper-img" src="./assets/Paper_emoji.png" alt=""></button>`
+   if(weaponName === 'Paper'){
+     return `<button class='weapon-button classic-margin'><img class='paper-img' src='./assets/Paper_emoji.png' alt=''></button>`;
    } else {
-     return `<button class="weapon-button"><img class="${imgClass}-img" src="./assets/${weaponName}_emoji.png" alt=""></button>`
+     return `<button class='weapon-button'><img class='${imgClass}-img' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
    }
 }
 
 function generateClassicGame(){
-  var classicWeapons = [generateWeapon('Rock'),generateWeapon('Scissor'),generateWeapon('Paper')]
+  var classicWeapons = [generateWeapon('Rock'),generateWeapon('Scissor'),generateWeapon('Paper')];
     for(var i = 0; i < 3; i ++){
-      weapons.innerHTML += classicWeapons[i]
+      weapons.innerHTML += classicWeapons[i];
     }
 }
 
 function generateMalaysianGame(){
-  var malaysianWeapons = [generateWeapon('Rock'),generateWeapon('Bird'),generateWeapon('Water'),generateWeapon('Worm')]
+  var malaysianWeapons = [generateWeapon('Rock'),generateWeapon('Bird'),generateWeapon('Water'),generateWeapon('Worm')];
     for(var i = 0; i < 4; i ++){
-      weapons.innerHTML += malaysianWeapons[i]
+      weapons.innerHTML += malaysianWeapons[i];
     }
+}
+
+function generateRules(rules){
+  return `<button class='classic big-button' style='font-size: 21px'>${rules}</button>`;
 }
 
 function showRules(event){
   var rulesSibling = event.target.parentElement.previousElementSibling
-  var classicRules = 'Rock > Scissors Rock < Paper Paper < Scissors Paper < Scissors'
+  var classicRules = 'Rock > Scissors Rock < Paper Paper < Scissors'
   var malaysianRules = 'Bird > Worm Bird > Water Rock > Bird Water > Rock Worm > Rock'
-  event.target.innerText = "PLAY"
-  if(rulesSibling.innerText === "Classic"){
+  event.target.innerText = 'PLAY'
+  if(rulesSibling.innerText === 'Classic'){
     rulesSibling.innerHTML = generateRules(classicRules)
-  } else if(rulesSibling.innerText === "Malaysian"){
+  } else if(rulesSibling.innerText === 'Malaysian'){
     rulesSibling.innerHTML = generateRules(malaysianRules)
   }
 }
