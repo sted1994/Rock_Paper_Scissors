@@ -1,5 +1,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DOM Elements~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var characterButtons = document.querySelector('.character-buttons');
+var manCharater = document.querySelector('.man');
+var womenCharater = document.querySelector('.woman')
 var gameSelectionPage = document.querySelector('.game-selection');
 var chosenCharacter = document.querySelector('.chosen-character');
 var gameplayPage = document.querySelector('.gameplay');
@@ -14,7 +15,13 @@ var rockImg = document.querySelector('.rock-img');
 var paperImg = document.querySelector('.paper-img');
 var weapons = document.querySelector('.weapons')
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-characterButtons.addEventListener('click', function(){
+manCharater.addEventListener('click', function(){
+  displayGameSelection(event);
+  assignPlayerChar(event);
+  makeNewPlayer(event);
+})
+
+womenCharater.addEventListener('click', function(){
   displayGameSelection(event);
   assignPlayerChar(event);
   makeNewPlayer(event);
