@@ -32,7 +32,10 @@ button:hover{
 
 .rock-img,
 .scissor-img,
-.paper-img{
+.paper-img,
+.bird-img,
+.worm-img,
+.water-img{
   width: 100px;
 }
 

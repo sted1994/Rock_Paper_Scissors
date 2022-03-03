@@ -14,6 +14,9 @@ var scissorImg = document.querySelector('.scissor-img');
 var rockImg = document.querySelector('.rock-img');
 var paperImg = document.querySelector('.paper-img');
 var weapons = document.querySelector('.weapons')
+var changeGameButton = document.querySelector('.change-game')
+var allWeapons = document.querySelectorAll('.weapon-button')
+var allWeaponstest = document.querySelectorAll('.weapons')
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 manCharater.addEventListener('click', function(){
   displayGameSelection(event);
@@ -51,10 +54,20 @@ classicRulesButton.addEventListener('click', function(event){
   }
 })
 
+weapons.addEventListener('click', function(event){
+  console.log(event.target)
+})
+
+changeGameButton.addEventListener('click', function(){
+  countClicks(event)
+  console.log(gameSelectionCounter)
+  displayGameSelection();
+})
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var newPlayer = new Player()
 var classicRuleClicks = 0;
 var malaysianRuleClicks = 0;
+var gameSelectionCounter = 0;
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function hideElement(htmlElement){
@@ -70,6 +83,8 @@ function countClicks(event){
     classicRuleClicks++
   } else if(event.target.classList[0] === 'malaysian-rules'){
     malaysianRuleClicks++
+  } else if(event.target.classList[0] === 'change-game'){
+    gameSelectionCounter++
   }
 }
 
@@ -90,33 +105,46 @@ function displayClassicGame(){
   hideElement(characterSelectionPage);
 }
 
+function transformImg(currentImg, newImg){
+  if(currentImg === scissorImg){
+    currentImg.parentElement.classList.remove('classic-margin');
+    currentImg.classList.add(`scissor-img`)
+    currentImg.src = `./assets/${newImg}_emoji.png`
+  } else{
+    currentImg.classList.remove(currentImg.classList[0]);
+    currentImg.classList.add(`${newImg}-img`)
+    currentImg.src = `./assets/${newImg}_emoji.png`
+  }
+}
+
 function displayMalaysianGame(){
   displayClassicGame();
-  paperImg.src = "./assets/Bird_emoji.png"
-  scissorImg.src = "./assets/Water_emoji.png"
-  console.log(scissorImg.classList)
-  scissorImg.parentElement.classList.remove('classic-margin')
-  console.log(scissorImg.classList)
-  weapons.innerHTML += `
-  <button class="weapon-button"><img class="paper-img" src="./assets/Worm_emoji.png" alt=""></button>`
-
+  transformImg(paperImg, "Bird")
+  transformImg(scissorImg, "Water")
+  if(gameSelectionCounter < 1){
+    weapons.innerHTML += `
+    <button class="weapon-button"><img class="worm-img" src="./assets/Worm_emoji.png" alt=""></button>`
+  }
 }
 
 function makeNewPlayer(event){
+  var newPlayer = new Player()
   newPlayer.name = event.target.parentElement.classList[0];
   newPlayer.token = event.target.src;
 }
 
-function showRules(event, classicRulesClick){
+function generateRules(rules){
+  return `<button class="classic big-button" style="font-size: 20px">${rules}</button>`
+}
+
+function showRules(event){
   var rulesSibling = event.target.parentElement.previousElementSibling
   var classicRules = 'Rock > Scissors Rock < Paper Paper < Scissors Paper < Scissors'
   var malaysianRules = 'Bird > Worm Bird > Water Rock > Bird Water > Rock Worm > Rock'
   event.target.innerText = "PLAY"
   if(rulesSibling.innerText === "Classic"){
-    rulesSibling.innerHTML = `
-    <button class="classic big-button" style="font-size: 20px">${classicRules}</button>`
+    rulesSibling.innerHTML = generateRules(classicRules)
   } else if(rulesSibling.innerText === "Malaysian"){
-    rulesSibling.innerHTML =`
-    <button class="classic big-button" style="font-size: 25px">${malaysianRules}</button>`
+    rulesSibling.innerHTML = generateRules(malaysianRules)
   }
 }
