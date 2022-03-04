@@ -3,7 +3,8 @@ class Game{
     this.players = [];
     this.game = '';
     this.classisWeapons = ['rock-img', 'paper-img', 'scissor-img'];
-    this.malaysianWeapons = ['rock-img','bird-img','water-img','worm-img']
+    this.malaysianWeapons = ['rock-img','bird-img','water-img','worm-img'];
+    this.startingScores = [];
   }
 
   computerPick(){
@@ -17,11 +18,12 @@ class Game{
   findWinner(){
     this.computerPick();
     if(this.game === 'classic'){
+      this.startingScore();
       if(this.players[1].weaponPick === 'rock-img'){
         if(this.players[0].weaponPick.value === 'paper-img'){
           this.players[0].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[1].wins++
         }
@@ -31,7 +33,7 @@ class Game{
         if(this.players[0].weaponPick.value === 'scissor-img'){
           this.players[0].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[1].wins++
         }
@@ -41,7 +43,7 @@ class Game{
         if(this.players[0].weaponPick.value === 'rock-img'){
           this.players[0].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[1].wins++
         }
@@ -50,12 +52,12 @@ class Game{
     }
 
     if(this.game === 'malaysian'){
-      console.log(this.players[1].weaponPick)
+      this.startingScore();
       if(this.players[1].weaponPick === 'bird-img'){
         if(this.players[0].weaponPick.value === 'worm-img' || this.players[0].weaponPick.value === 'water-img'){
           this.players[1].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[0].wins++
         }
@@ -65,7 +67,7 @@ class Game{
         if(this.players[0].weaponPick.value === 'water-img' || this.players[0].weaponPick.value === 'worm-img'){
           this.players[0].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[1].wins++
         }
@@ -75,7 +77,7 @@ class Game{
         if(this.players[0].weaponPick.value === 'rock-img'){
           this.players[1].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[0].wins++
         }
@@ -85,7 +87,7 @@ class Game{
         if(this.players[0].weaponPick.value === 'rock-img' || this.players[0].weaponPick.value === 'worm-img'){
           this.players[1].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-          console.log('its a draw')
+          // console.log('its a draw')
         } else {
           this.players[0].wins++
         }
@@ -94,8 +96,25 @@ class Game{
     }
   }
 
+  startingScore(){
+    var cpuWins = this.players[1].wins;
+    var playerWins = this.players[0].wins;
+    this.startingScores.push(playerWins);
+    this.startingScores.push(cpuWins)
+  }
   calculateScore(){
-    computerScore.innerText = `Computer Score: ${this.players[1].wins}`;
-    humanScore.innerText = `Your Score: ${this.players[0].wins}`;
+    displayScore(this.players[0].wins, this.players[1].wins)
+    if (this.startingScores[1] === undefined && this.startingScores[0] === undefined){
+      return
+    } else if (this.startingScores[1] < this.players[1].wins){
+      console.log('computerWon')
+    } else if(this.startingScores[0] < this.players[0].wins){
+      console.log('playerWon')
+    }else{
+      console.log('its a draw')
+    }
+    playerWon(this.players[0])
+    setTimeout(setDefaultIcons, 1000);
+    this.startingScores = []
   }
 }

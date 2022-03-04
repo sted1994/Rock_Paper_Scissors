@@ -5,8 +5,4 @@ class Player{
     this.token = '';
     this.weaponPick = ''
   }
-
-  takeTurn(){
-
-  }
 }

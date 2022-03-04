@@ -182,3 +182,18 @@ function showRules(event){
     rulesSibling.innerHTML = generateRules(malaysianRules)
   }
 }
+
+function setDefaultIcons(){
+  computerIcon.src = newGame.players[1].token;
+  chosenCharacter.src = newGame.players[0].token;
+}
+
+function playerWon(winner){
+  computerIcon.src = winner.token;
+  chosenCharacter.src = winner.token;
+}
+
+function displayScore(user, computer){
+  computerScore.innerText = `Computer Score: ${computer}`;
+  humanScore.innerText = `Your Score: ${user}`;
+}
