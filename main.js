@@ -31,12 +31,14 @@ classicModeButton.addEventListener('click', function(event){
   displayClassicGame();
   newGame.game = 'classic'
   newGame.computerPick();
+  newGame.calculateScore()
 })
 
 malaysianModeButton.addEventListener('click', function(event){
   displayMalaysianGame();
   newGame.game = 'malaysian'
   newGame.computerPick();
+  newGame.calculateScore()
 })
 
 malaysianRulesButton.addEventListener('click', function(event){
@@ -46,6 +48,7 @@ malaysianRulesButton.addEventListener('click', function(event){
     displayMalaysianGame();
     newGame.game = 'malaysian'
     newGame.computerPick();
+    newGame.calculateScore()
   }
 })
 
@@ -56,6 +59,7 @@ classicRulesButton.addEventListener('click', function(event){
     displayClassicGame();
     newGame.game = 'classic'
     newGame.computerPick();
+    newGame.calculateScore()
   }
 })
 
@@ -63,12 +67,12 @@ weapons.addEventListener('click', function(event){
   newGame.players[0].weaponPick = event.target.classList;
   newGame.computerPick()
   newGame.findWinner()
-  newGame.calculateScore()
 })
 
 changeGameButton.addEventListener('click', function(){
   countClicks(event);
   displayGameSelection();
+  this.players[0].weaponPick.value === 'paper-img'
 })
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

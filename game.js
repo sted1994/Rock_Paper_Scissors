@@ -17,12 +17,79 @@ class Game{
   findWinner(){
     this.computerPick();
     if(this.game === 'classic'){
-      // console.log('computer:' +this.players[1].weaponPick)
-      // console.log('player:' + this.players[0].weaponPick.value)
-      if(this.players[1].weaponPick === 'rock-img' && this.players[0].weaponPick.value !== 'paper-img'){
-        this.players[1].wins++
-        console.log(this.players[1].wins)
+      if(this.players[1].weaponPick === 'rock-img'){
+        if(this.players[0].weaponPick.value === 'paper-img'){
+          this.players[0].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[1].wins++
+        }
       }
+
+      if(this.players[1].weaponPick === 'paper-img'){
+        if(this.players[0].weaponPick.value === 'scissor-img'){
+          this.players[0].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[1].wins++
+        }
+      }
+
+      if(this.players[1].weaponPick === 'scissor-img'){
+        if(this.players[0].weaponPick.value === 'rock-img'){
+          this.players[0].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[1].wins++
+        }
+      }
+      newGame.calculateScore()
+    }
+
+    if(this.game === 'malaysian'){
+      if(this.players[1].weaponPick === 'bird-img'){
+        if(this.players[0].weaponPick.value === 'worm-img' || this.players[0].weaponPick.value === 'water-img'){
+          this.players[1].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[0].wins++
+        }
+      }
+
+      if(this.players[1].weaponPick === 'rock-img'){
+        if(this.players[0].weaponPick.value === 'water-img' || this.players[0].weaponPick.value === 'worm-img'){
+          this.players[0].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[1].wins++
+        }
+      }
+
+      if(this.players[1].weaponPick === 'worm-img'){
+        if(this.players[0].weaponPick.value === 'rock-img'){
+          this.players[1].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[1].wins++
+        }
+      }
+
+      if(this.players[1].weaponPick === 'water-img'){
+        if(this.players[0].weaponPick.value === 'rock-img' || this.players[0].weaponPick.value === 'worm-img'){
+          this.players[0].wins++
+        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
+          console.log('its a draw')
+        } else {
+          this.players[1].wins++
+        }
+      }
+      newGame.calculateScore()
     }
   }
 
