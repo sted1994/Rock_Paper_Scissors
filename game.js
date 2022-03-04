@@ -50,6 +50,7 @@ class Game{
     }
 
     if(this.game === 'malaysian'){
+      console.log(this.players[1].weaponPick)
       if(this.players[1].weaponPick === 'bird-img'){
         if(this.players[0].weaponPick.value === 'worm-img' || this.players[0].weaponPick.value === 'water-img'){
           this.players[1].wins++
@@ -76,17 +77,17 @@ class Game{
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
           console.log('its a draw')
         } else {
-          this.players[1].wins++
+          this.players[0].wins++
         }
       }
 
       if(this.players[1].weaponPick === 'water-img'){
         if(this.players[0].weaponPick.value === 'rock-img' || this.players[0].weaponPick.value === 'worm-img'){
-          this.players[0].wins++
+          this.players[1].wins++
         } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
           console.log('its a draw')
         } else {
-          this.players[1].wins++
+          this.players[0].wins++
         }
       }
       newGame.calculateScore()

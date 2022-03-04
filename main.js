@@ -14,6 +14,7 @@ var weapons = document.querySelector('.weapons');
 var changeGameButton = document.querySelector('.change-game');
 var humanScore = document.querySelector('.human-score');
 var computerScore = document.querySelector('.machine-score');
+var scoreReset = document.querySelector('.game-reset');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 manCharater.addEventListener('click', function(){
   displayGameSelection(event);
@@ -70,11 +71,14 @@ weapons.addEventListener('click', function(event){
 })
 
 changeGameButton.addEventListener('click', function(){
-  countClicks(event);
   displayGameSelection();
-  this.players[0].weaponPick.value === 'paper-img'
 })
 
+scoreReset.addEventListener('click', function(){
+  newGame.players[0].wins = 0;
+  newGame.players[1].wins = 0;
+  newGame.calculateScore();
+})
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var classicRuleClicks = 0;
 var malaysianRuleClicks = 0;
