@@ -15,6 +15,7 @@ var changeGameButton = document.querySelector('.change-game');
 var humanScore = document.querySelector('.human-score');
 var computerScore = document.querySelector('.machine-score');
 var scoreReset = document.querySelector('.game-reset');
+var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 manCharater.addEventListener('click', function(){
   displayGameSelection(event);
@@ -30,14 +31,14 @@ womenCharater.addEventListener('click', function(){
 
 classicModeButton.addEventListener('click', function(event){
   displayClassicGame();
-  newGame.game = 'classic'
+  newGame = new Game('classic', players)
   newGame.computerPick();
   newGame.calculateScore()
 })
 
 malaysianModeButton.addEventListener('click', function(event){
   displayMalaysianGame();
-  newGame.game = 'malaysian'
+  newGame = new Game('malaysian', players)
   newGame.computerPick();
   newGame.calculateScore()
 })
@@ -47,7 +48,7 @@ malaysianRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(malaysianRuleClicks >= 2){
     displayMalaysianGame();
-    newGame.game = 'malaysian'
+    newGame = new Game('malaysian', players)
     newGame.computerPick();
     newGame.calculateScore()
   }
@@ -58,7 +59,7 @@ classicRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(classicRuleClicks >= 2){
     displayClassicGame();
-    newGame.game = 'classic'
+    newGame = new Game('classic', players)
     newGame.computerPick();
     newGame.calculateScore()
   }
@@ -66,7 +67,6 @@ classicRulesButton.addEventListener('click', function(event){
 
 weapons.addEventListener('click', function(event){
   newGame.players[0].weaponPick = event.target.classList;
-  newGame.computerPick()
   newGame.findWinner()
 })
 
@@ -77,12 +77,13 @@ changeGameButton.addEventListener('click', function(){
 scoreReset.addEventListener('click', function(){
   newGame.players[0].wins = 0;
   newGame.players[1].wins = 0;
-  newGame.calculateScore();
+  displayScore();
 })
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var classicRuleClicks = 0;
 var malaysianRuleClicks = 0;
-var newGame = new Game();
+var newGame;
+var players = [];
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function hideElement(htmlElement){
@@ -107,7 +108,8 @@ function assignPlayerChar(event){
   newPlayer.token = event.target.src;
   chosenCharacter.src = event.target.src;
   chosenCharacter.classList.add('game-characters');
-  newGame.players.push(newPlayer);
+  // console.log('about to push player')
+  players.push(newPlayer);
 }
 
 function assignComputerChar(){
@@ -115,7 +117,7 @@ function assignComputerChar(){
   computerChar.name = 'computer';
   computerChar.token = './assets/Computer_emoji.png';
   computerIcon.src = computerChar.token;
-  newGame.players.push(computerChar);
+  players.push(computerChar)
 }
 
 function displayGameSelection(event){
@@ -183,14 +185,20 @@ function showRules(event){
   }
 }
 
-function setDefaultIcons(){
+function setDefaultScreen(){
   computerIcon.src = newGame.players[1].token;
   chosenCharacter.src = newGame.players[0].token;
+  gameplayTitle.innerText = `Pick your weapon`
 }
 
 function playerWon(winner){
   computerIcon.src = winner.token;
   chosenCharacter.src = winner.token;
+  if(winner.name !== 'computer'){
+    gameplayTitle.innerText = `You won this round!!`
+  } else{
+    gameplayTitle.innerText = `${winner.name} won this round!!`
+  }
 }
 
 function displayScore(user, computer){
