@@ -112,7 +112,7 @@ function assignPlayerChar(event){
 
 function assignComputerChar(){
   var computerChar = new Player();
-  computerChar.name = 'computer';
+  computerChar.name = 'Computer';
   computerChar.token = './assets/Computer_emoji.png';
   computerIcon.src = computerChar.token;
   players.push(computerChar)
@@ -189,13 +189,20 @@ function setDefaultScreen(){
   gameplayTitle.innerText = `Pick your weapon`
 }
 
-function playerWon(winner){
+function changeLooserIcon(winner){
   computerIcon.src = winner.token;
   chosenCharacter.src = winner.token;
-  if(winner.name !== 'computer'){
-    gameplayTitle.innerText = `You won this round!!`
-  } else{
+}
+
+function playerWon(winner){
+  if(winner === 'Draw'){
+    gameplayTitle.innerText = 'Its a draw!!'
+  } else if(winner.name === 'Computer'){
     gameplayTitle.innerText = `${winner.name} won this round!!`
+    changeLooserIcon(winner)
+  } else {
+    gameplayTitle.innerText = `You won this round!!`
+    changeLooserIcon(winner)
   }
 }
 

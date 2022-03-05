@@ -9,7 +9,7 @@ class Game{
   computerPick(){
       this.players[1].weaponPick = this.weapons[Math.floor(Math.random() * this.weapons.length)]
   }
-  
+
   startingScore(){
     var cpuWins = this.players[1].wins;
     var playerWins = this.players[0].wins;
@@ -26,7 +26,6 @@ class Game{
     }
 
     if(this.type === 'malaysian'){
-      this.startingScore();
       this.playMalaysian();
       newGame.calculateScore()
     }
@@ -68,6 +67,7 @@ class Game{
     } else if(this.startingScores[0] < this.players[0].wins){
       playerWon(this.players[0])
     }else{
+      playerWon('Draw')
     }
     setTimeout(setDefaultScreen, 1250);
     this.startingScores = []
