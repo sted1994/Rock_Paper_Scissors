@@ -1,7 +1,9 @@
 class Player{
   constructor(){
-    this.name = "";
+    this.name = '';
+    this.initialWins;
     this.wins = 0;
-    this.token = "";
+    this.token = '';
+    this.weaponPick;
   }
 }
