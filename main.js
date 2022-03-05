@@ -68,7 +68,7 @@ classicRulesButton.addEventListener('click', function(event){
 })
 
 weapons.addEventListener('click', function(event){
-  newGame.players[0].weaponPick = event.target.classList;
+  newGame.userPlayer.weaponPick = event.target.classList;
   newGame.findWinner();
 })
 
@@ -78,7 +78,7 @@ changeGameButton.addEventListener('click', function(){
 
 scoreReset.addEventListener('click', function(){
   newGame.resetScore();
-  displayScore(newGame.players[0].wins, newGame.players[1].wins);
+  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
 })
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -189,8 +189,8 @@ function showRules(event){
 }
 
 function setDefaultScreen(){
-  computerIcon.src = newGame.players[1].token;
-  chosenCharacter.src = newGame.players[0].token;
+  computerIcon.src = newGame.computerPlayer.token;
+  chosenCharacter.src = newGame.userPlayer.token;
   gameplayTitle.innerText = `Pick your weapon`
 }
 
