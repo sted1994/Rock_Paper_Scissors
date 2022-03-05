@@ -32,15 +32,15 @@ womenCharater.addEventListener('click', function(event){
 })
 
 classicModeButton.addEventListener('click', function(event){
-  displayClassicGame();
   newGame = new Game('classic', players);
+  displayClassicGame();
   newGame.computerPick();
   newGame.calculateScore()
 })
 
 malaysianModeButton.addEventListener('click', function(event){
-  displayMalaysianGame();
   newGame = new Game('malaysian', players)
+  displayMalaysianGame();
   newGame.computerPick();
   newGame.calculateScore();
 })
@@ -49,8 +49,8 @@ malaysianRulesButton.addEventListener('click', function(event){
   countClicks(event);
   showRules(event);
   if(malaysianRuleClicks >= 2){
-    displayMalaysianGame();
     newGame = new Game('malaysian', players);
+    displayMalaysianGame();
     newGame.computerPick();
     newGame.calculateScore();
   }
@@ -60,8 +60,8 @@ classicRulesButton.addEventListener('click', function(event){
   countClicks(event);
   showRules(event);
   if(classicRuleClicks >= 2){
-    displayClassicGame();
     newGame = new Game('classic', players);
+    displayClassicGame();
     newGame.computerPick();
     newGame.calculateScore();
   }
@@ -132,44 +132,31 @@ function displayGame(){
 function displayClassicGame(){
   weapons.innerHTML = '';
   displayGame();
-  generateClassicGame();
+  generateGame()
 }
 
 function displayMalaysianGame(){
   weapons.innerHTML = '';
   displayGame();
-  generateMalaysianGame();
+  generateGame()
 }
 
 
 function generateWeapon(weaponName){
   var imgClass = weaponName.toLowerCase()
    if(weaponName === 'Paper'){
-     return `<button class='weapon-button classic-margin'><img class='paper-img' src='./assets/Paper_emoji.png' alt=''></button>`;
+     return `<button class='weapon-button classic-margin'><img class='paper' src='./assets/Paper_emoji.png' alt=''></button>`;
    } else {
-     return `<button class='weapon-button'><img class='${imgClass}-img' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
+     return `<button class='weapon-button'><img class='${imgClass}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
    }
 }
 
 function generateGame(){
-  var weaponsArray = newGame.type
-  for(var i = 0; i < 3; i ++){
-    weapons.innerHTML += classicWeapons[i];
+  var weaponsArray = gameWeapons[newGame.type]
+  for(var i = 0; i < weaponsArray.length; i ++){
+    generateWeapon(weaponsArray[i])
+    weapons.innerHTML += generateWeapon(weaponsArray[i]);
   }
-}
-
-function generateClassicGame(){
-  var classicWeapons = [generateWeapon('Rock'),generateWeapon('Scissor'),generateWeapon('Paper')];
-    for(var i = 0; i < 3; i ++){
-      weapons.innerHTML += classicWeapons[i];
-    }
-}
-
-function generateMalaysianGame(){
-  var malaysianWeapons = [generateWeapon('Rock'),generateWeapon('Bird'),generateWeapon('Water'),generateWeapon('Worm')];
-    for(var i = 0; i < 4; i ++){
-      weapons.innerHTML += malaysianWeapons[i];
-    }
 }
 
 function generateRules(rules){

@@ -44,6 +44,8 @@ class Game{
   }
 
   checkPick(playerPick, computerPick){
+    console.log(computerPick)
+    console.log(playerPick)
     if(playerPick === computerPick){
       return
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){

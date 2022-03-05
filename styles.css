@@ -30,12 +30,12 @@ button:hover{
   border-radius: 10px;
 }
 
-.rock-img,
-.scissor-img,
-.paper-img,
-.bird-img,
-.worm-img,
-.water-img{
+.rock,
+.scissor,
+.paper,
+.bird,
+.worm,
+.water{
   width: 100px;
 }
 
