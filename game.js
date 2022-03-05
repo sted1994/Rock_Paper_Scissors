@@ -20,47 +20,13 @@ class Game{
   findWinner(){
     this.computerPick();
     this.startingScore();
-    if(this.type === 'classic'){
-      this.playClassic()
-      this.calculateScore()
-    }
-
-    if(this.type === 'malaysian'){
-      this.playMalaysian();
-      newGame.calculateScore()
-    }
-  }
-
-  playMalaysian(){
-    if(this.players[1].weaponPick === 'bird-img'){
-      checkBirdPick()
-    }
-    if(this.players[1].weaponPick === 'rock-img'){
-      checkRockPick()
-    }
-    if(this.players[1].weaponPick === 'worm-img'){
-      checkWormPick()
-    }
-    if(this.players[1].weaponPick === 'water-img'){
-      checkWaterPick()
-    }
-  }
-
-  playClassic(){
-    if(this.players[1].weaponPick === 'rock-img'){
-      checkRockPick()
-    }
-    if(this.players[1].weaponPick === 'paper-img'){
-      checkPaperPick()
-    }
-    if(this.players[1].weaponPick === 'scissor-img'){
-      checkScissorPick()
-    }
+    this.checkPick(this.players[0].weaponPick.value, this.players[1].weaponPick);
+    this.calculateScore();
   }
 
   calculateScore(){
     displayScore(this.players[0].wins, this.players[1].wins)
-    if (this.startingScores[1] === undefined && this.startingScores[0] === undefined){
+    if (!this.startingScores[1] && !this.startingScores[0]){
       return
     } else if (this.startingScores[1] < this.players[1].wins){
       playerWon(this.players[1])
@@ -71,5 +37,20 @@ class Game{
     }
     setTimeout(setDefaultScreen, 1250);
     this.startingScores = []
+  }
+
+  resetScore(){
+    newGame.players[0].wins = 0;
+    newGame.players[1].wins = 0;
+  }
+
+  checkPick(playerPick, computerPick){
+    if(playerPick === computerPick){
+      return
+    } else if(weaponsWeaknesses[playerPick].includes(computerPick)){
+      newGame.players[1].wins++
+    } else {
+      newGame.players[0].wins++
+    }
   }
 }

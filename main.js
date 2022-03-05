@@ -19,21 +19,21 @@ var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-manCharater.addEventListener('click', function(){
-  displayGameSelection(event);
+manCharater.addEventListener('click', function(event){
+  displayGameSelection();
   assignPlayerChar(event);
   assignComputerChar();
 })
 
-womenCharater.addEventListener('click', function(){
-  displayGameSelection(event);
+womenCharater.addEventListener('click', function(event){
+  displayGameSelection();
   assignPlayerChar(event);
   assignComputerChar();
 })
 
 classicModeButton.addEventListener('click', function(event){
   displayClassicGame();
-  newGame = new Game('classic', players)
+  newGame = new Game('classic', players);
   newGame.computerPick();
   newGame.calculateScore()
 })
@@ -42,7 +42,7 @@ malaysianModeButton.addEventListener('click', function(event){
   displayMalaysianGame();
   newGame = new Game('malaysian', players)
   newGame.computerPick();
-  newGame.calculateScore()
+  newGame.calculateScore();
 })
 
 malaysianRulesButton.addEventListener('click', function(event){
@@ -50,9 +50,9 @@ malaysianRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(malaysianRuleClicks >= 2){
     displayMalaysianGame();
-    newGame = new Game('malaysian', players)
+    newGame = new Game('malaysian', players);
     newGame.computerPick();
-    newGame.calculateScore()
+    newGame.calculateScore();
   }
 })
 
@@ -61,15 +61,15 @@ classicRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(classicRuleClicks >= 2){
     displayClassicGame();
-    newGame = new Game('classic', players)
+    newGame = new Game('classic', players);
     newGame.computerPick();
-    newGame.calculateScore()
+    newGame.calculateScore();
   }
 })
 
 weapons.addEventListener('click', function(event){
   newGame.players[0].weaponPick = event.target.classList;
-  newGame.findWinner()
+  newGame.findWinner();
 })
 
 changeGameButton.addEventListener('click', function(){
@@ -77,10 +77,8 @@ changeGameButton.addEventListener('click', function(){
 })
 
 scoreReset.addEventListener('click', function(){
-  console.log()
-  newGame.players[0].wins = 0;
-  newGame.players[1].wins = 0;
-  displayScore(newGame.players[0].wins, newGame.players[1].wins)
+  newGame.resetScore();
+  displayScore(newGame.players[0].wins, newGame.players[1].wins);
 })
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -118,7 +116,7 @@ function assignComputerChar(){
   players.push(computerChar)
 }
 
-function displayGameSelection(event){
+function displayGameSelection(){
   weapons.innerHTML = '';
   hideElement(characterSelectionPage);
   showElement(gameSelectionPage);
@@ -151,6 +149,13 @@ function generateWeapon(weaponName){
    } else {
      return `<button class='weapon-button'><img class='${imgClass}-img' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
    }
+}
+
+function generateGame(){
+  var weaponsArray = newGame.type
+  for(var i = 0; i < 3; i ++){
+    weapons.innerHTML += classicWeapons[i];
+  }
 }
 
 function generateClassicGame(){
