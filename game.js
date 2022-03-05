@@ -1,9 +1,5 @@
 class Game{
   constructor(type, players){
-    // var weapons = {
-    //   classic: ['rock-img', 'paper-img', 'scissor-img'],
-    //   malaysian: ['rock-img','bird-img','water-img','worm-img'],
-    // };
     this.players = players;
     this.type = type;
     this.weapons = gameWeapons[this.type];
@@ -103,7 +99,6 @@ class Game{
     } else if(this.startingScores[0] < this.players[0].wins){
       playerWon(this.players[0])
     }else{
-      console.log('its a draw')
     }
     setTimeout(setDefaultScreen, 1250);
     this.startingScores = []

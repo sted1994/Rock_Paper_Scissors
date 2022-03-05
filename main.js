@@ -17,6 +17,8 @@ var computerScore = document.querySelector('.machine-score');
 var scoreReset = document.querySelector('.game-reset');
 var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 manCharater.addEventListener('click', function(){
   displayGameSelection(event);
   assignPlayerChar(event);
@@ -75,9 +77,10 @@ changeGameButton.addEventListener('click', function(){
 })
 
 scoreReset.addEventListener('click', function(){
+  console.log()
   newGame.players[0].wins = 0;
   newGame.players[1].wins = 0;
-  displayScore();
+  displayScore(newGame.players[0].wins, newGame.players[1].wins)
 })
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 var classicRuleClicks = 0;
@@ -108,12 +111,11 @@ function assignPlayerChar(event){
   newPlayer.token = event.target.src;
   chosenCharacter.src = event.target.src;
   chosenCharacter.classList.add('game-characters');
-  // console.log('about to push player')
   players.push(newPlayer);
 }
 
 function assignComputerChar(){
-  var computerChar = new Player;
+  var computerChar = new Player();
   computerChar.name = 'computer';
   computerChar.token = './assets/Computer_emoji.png';
   computerIcon.src = computerChar.token;
