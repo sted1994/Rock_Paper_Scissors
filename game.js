@@ -9,87 +9,56 @@ class Game{
   computerPick(){
       this.players[1].weaponPick = this.weapons[Math.floor(Math.random() * this.weapons.length)]
   }
-
-  findWinner(){
-    this.computerPick();
-    this.startingScore();
-    if(this.type === 'classic'){
-      if(this.players[1].weaponPick === 'rock-img'){
-        if(this.players[0].weaponPick.value === 'paper-img'){
-          this.players[0].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[1].wins++
-        }
-      }
-
-      if(this.players[1].weaponPick === 'paper-img'){
-        if(this.players[0].weaponPick.value === 'scissor-img'){
-          this.players[0].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[1].wins++
-        }
-      }
-
-      if(this.players[1].weaponPick === 'scissor-img'){
-        if(this.players[0].weaponPick.value === 'rock-img'){
-          this.players[0].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[1].wins++
-        }
-      }
-      newGame.calculateScore()
-    }
-
-    if(this.type === 'malaysian'){
-      this.startingScore();
-      if(this.players[1].weaponPick === 'bird-img'){
-        if(this.players[0].weaponPick.value === 'worm-img' || this.players[0].weaponPick.value === 'water-img'){
-          this.players[1].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[0].wins++
-        }
-      }
-
-      if(this.players[1].weaponPick === 'rock-img'){
-        if(this.players[0].weaponPick.value === 'water-img' || this.players[0].weaponPick.value === 'worm-img'){
-          this.players[0].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[1].wins++
-        }
-      }
-
-      if(this.players[1].weaponPick === 'worm-img'){
-        if(this.players[0].weaponPick.value === 'rock-img'){
-          this.players[1].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[0].wins++
-        }
-      }
-
-      if(this.players[1].weaponPick === 'water-img'){
-        if(this.players[0].weaponPick.value === 'rock-img' || this.players[0].weaponPick.value === 'worm-img'){
-          this.players[1].wins++
-        } else if (this.players[1].weaponPick === this.players[0].weaponPick.value){
-        } else {
-          this.players[0].wins++
-        }
-      }
-      newGame.calculateScore()
-    }
-  }
-
+  
   startingScore(){
     var cpuWins = this.players[1].wins;
     var playerWins = this.players[0].wins;
     this.startingScores.push(playerWins);
     this.startingScores.push(cpuWins)
   }
+
+  findWinner(){
+    this.computerPick();
+    this.startingScore();
+    if(this.type === 'classic'){
+      this.playClassic()
+      this.calculateScore()
+    }
+
+    if(this.type === 'malaysian'){
+      this.startingScore();
+      this.playMalaysian();
+      newGame.calculateScore()
+    }
+  }
+
+  playMalaysian(){
+    if(this.players[1].weaponPick === 'bird-img'){
+      checkBirdPick()
+    }
+    if(this.players[1].weaponPick === 'rock-img'){
+      checkRockPick()
+    }
+    if(this.players[1].weaponPick === 'worm-img'){
+      checkWormPick()
+    }
+    if(this.players[1].weaponPick === 'water-img'){
+      checkWaterPick()
+    }
+  }
+
+  playClassic(){
+    if(this.players[1].weaponPick === 'rock-img'){
+      checkRockPick()
+    }
+    if(this.players[1].weaponPick === 'paper-img'){
+      checkPaperPick()
+    }
+    if(this.players[1].weaponPick === 'scissor-img'){
+      checkScissorPick()
+    }
+  }
+
   calculateScore(){
     displayScore(this.players[0].wins, this.players[1].wins)
     if (this.startingScores[1] === undefined && this.startingScores[0] === undefined){

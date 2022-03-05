@@ -82,11 +82,7 @@ scoreReset.addEventListener('click', function(){
   newGame.players[1].wins = 0;
   displayScore(newGame.players[0].wins, newGame.players[1].wins)
 })
-//~~~~~~~~~~~~~~~~~~~~~~~~~~~~Global Variables~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var classicRuleClicks = 0;
-var malaysianRuleClicks = 0;
-var newGame;
-var players = [];
+
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function hideElement(htmlElement){
