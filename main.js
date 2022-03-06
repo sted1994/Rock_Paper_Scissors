@@ -18,7 +18,6 @@ var scoreReset = document.querySelector('.game-reset');
 var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 manCharater.addEventListener('click', function(event){
   displayGameSelection();
   assignPlayerChar(event);
@@ -33,13 +32,15 @@ womenCharater.addEventListener('click', function(event){
 
 classicModeButton.addEventListener('click', function(event){
   newGame = new Game('classic', players);
-  displayClassicGame();
+  displayGame();
+  generateGame()
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
 malaysianModeButton.addEventListener('click', function(event){
   newGame = new Game('malaysian', players)
-  displayMalaysianGame();
+  displayGame();
+  generateGame()
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
@@ -48,7 +49,8 @@ malaysianRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(malaysianRuleClicks >= 2){
     newGame = new Game('malaysian', players);
-    displayMalaysianGame();
+    displayGame();
+    generateGame()
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
@@ -58,14 +60,17 @@ classicRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(classicRuleClicks >= 2){
     newGame = new Game('classic', players);
-    displayClassicGame();
+    displayGame();
+    generateGame()
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
 
 weapons.addEventListener('click', function(event){
-  newGame.userPlayer.weaponPick = event.target.classList;
-  newGame.findWinner();
+  if(newGame.disableMouse === false){
+    newGame.userPlayer.weaponPick = event.target.classList;
+    newGame.findWinner();
+  }
 })
 
 changeGameButton.addEventListener('click', function(){
@@ -125,25 +130,12 @@ function displayGame(){
   hideElement(characterSelectionPage);
 }
 
-function displayClassicGame(){
-  weapons.innerHTML = '';
-  displayGame();
-  generateGame()
-}
-
-function displayMalaysianGame(){
-  weapons.innerHTML = '';
-  displayGame();
-  generateGame()
-}
-
-
 function generateWeapon(weaponName){
      return `<button class='weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
-
 }
 
 function generateGame(){
+  weapons.innerHTML = '';
   var weaponsArray = gameWeapons[newGame.type]
   for(var i = 0; i < weaponsArray.length; i ++){
     generateWeapon(weaponsArray[i])
@@ -168,7 +160,8 @@ function showRules(event){
 }
 
 function setDefaultScreen(){
-  weapons.innerHTML = ""
+  newGame.disableMouse = false;
+  weapons.innerHTML = "";
   computerIcon.src = newGame.computerPlayer.token;
   chosenCharacter.src = newGame.userPlayer.token;
   gameplayTitle.innerText = `Pick your weapon`
@@ -198,6 +191,7 @@ function displayScore(user, computer){
 }
 
 function displayChoices(userPick, computerPick){
+  newGame.disableMouse = true
   weapons.innerHTML = "";
   weapons.innerHTML += generateWeapon(userPick);
   weapons.innerHTML += generateWeapon(computerPick);

@@ -4,6 +4,7 @@ class Game{
     this.weapons = gameWeapons[this.type];
     this.userPlayer = players[0];
     this.computerPlayer = players[1];
+    this.disableMouse = false;
   }
 
   startingScore(){
@@ -32,7 +33,7 @@ class Game{
       playerWon('Draw')
     }
     displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick)
-    setTimeout(setDefaultScreen, 1750);
+    setTimeout(setDefaultScreen, 3000);
   }
 
   resetScore(){
