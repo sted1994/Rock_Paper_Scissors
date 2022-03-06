@@ -32,7 +32,7 @@ class Game{
       playerWon('Draw')
     }
     displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick)
-    setTimeout(setDefaultScreen, 1750);
+    setTimeout(setDefaultScreen, 3000);
   }
 
   resetScore(){

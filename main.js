@@ -18,7 +18,6 @@ var scoreReset = document.querySelector('.game-reset');
 var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-
 manCharater.addEventListener('click', function(event){
   displayGameSelection();
   assignPlayerChar(event);
@@ -33,13 +32,15 @@ womenCharater.addEventListener('click', function(event){
 
 classicModeButton.addEventListener('click', function(event){
   newGame = new Game('classic', players);
-  displayClassicGame();
+  displayGame();
+  generateGame()
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
 malaysianModeButton.addEventListener('click', function(event){
   newGame = new Game('malaysian', players)
-  displayMalaysianGame();
+  displayGame();
+  generateGame()
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
@@ -48,7 +49,8 @@ malaysianRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(malaysianRuleClicks >= 2){
     newGame = new Game('malaysian', players);
-    displayMalaysianGame();
+    displayGame();
+    generateGame()
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
@@ -58,7 +60,8 @@ classicRulesButton.addEventListener('click', function(event){
   showRules(event);
   if(classicRuleClicks >= 2){
     newGame = new Game('classic', players);
-    displayClassicGame();
+    displayGame();
+    generateGame()
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
@@ -125,25 +128,12 @@ function displayGame(){
   hideElement(characterSelectionPage);
 }
 
-function displayClassicGame(){
-  weapons.innerHTML = '';
-  displayGame();
-  generateGame()
-}
-
-function displayMalaysianGame(){
-  weapons.innerHTML = '';
-  displayGame();
-  generateGame()
-}
-
-
 function generateWeapon(weaponName){
      return `<button class='weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
-
 }
 
 function generateGame(){
+  weapons.innerHTML = '';
   var weaponsArray = gameWeapons[newGame.type]
   for(var i = 0; i < weaponsArray.length; i ++){
     generateWeapon(weaponsArray[i])
