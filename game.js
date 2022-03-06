@@ -19,13 +19,13 @@ class Game{
     this.computerPick();
     this.startingScore();
     this.checkPick(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
+    displayScore(this.userPlayer.wins, this.computerPlayer.wins)
     this.calculateScore();
   }
 
 
 
   calculateScore(){
-    displayScore(this.userPlayer.wins, this.computerPlayer.wins)
     if (this.computerPlayer.initialWins === undefined && this.userPlayer.initialWins === undefined){
       return
     } else if (this.computerPlayer.initialWins < this.computerPlayer.wins){
@@ -35,7 +35,8 @@ class Game{
     }else{
       playerWon('Draw')
     }
-    setTimeout(setDefaultScreen, 1250);
+    displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick)
+    setTimeout(setDefaultScreen, 1750);
   }
 
   resetScore(){

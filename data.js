@@ -9,7 +9,7 @@ var gameWeapons = {
 
 var weaponsWeaknesses = {
   'rock': ['paper', 'water', 'worm'],
-  'paper': ['scissors'],
+  'paper': ['scissor'],
   'scissor': ['rock'],
   'bird': ['rock'],
   'water': ['bird'],
