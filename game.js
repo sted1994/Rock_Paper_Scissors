@@ -6,17 +6,13 @@ class Game{
     this.computerPlayer = players[1];
   }
 
-  computerPick(){
-      this.computerPlayer.weaponPick = this.weapons[Math.floor(Math.random() * this.weapons.length)]
-  }
-
   startingScore(){
     this.computerPlayer.initialWins= this.computerPlayer.wins;
     this.userPlayer.initialWins = this.userPlayer.wins;
   }
 
   findWinner(){
-    this.computerPick();
+    this.computerPlayer.takeTurn();
     this.startingScore();
     this.checkPick(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
     displayScore(this.userPlayer.wins, this.computerPlayer.wins)
@@ -45,8 +41,6 @@ class Game{
   }
 
   checkPick(playerPick, computerPick){
-    console.log(computerPick)
-    console.log(playerPick)
     if(playerPick === computerPick){
       return
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){

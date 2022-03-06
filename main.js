@@ -34,14 +34,12 @@ womenCharater.addEventListener('click', function(event){
 classicModeButton.addEventListener('click', function(event){
   newGame = new Game('classic', players);
   displayClassicGame();
-  newGame.computerPick();
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
 malaysianModeButton.addEventListener('click', function(event){
   newGame = new Game('malaysian', players)
   displayMalaysianGame();
-  newGame.computerPick();
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
@@ -51,7 +49,6 @@ malaysianRulesButton.addEventListener('click', function(event){
   if(malaysianRuleClicks >= 2){
     newGame = new Game('malaysian', players);
     displayMalaysianGame();
-    newGame.computerPick();
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
@@ -62,7 +59,6 @@ classicRulesButton.addEventListener('click', function(event){
   if(classicRuleClicks >= 2){
     newGame = new Game('classic', players);
     displayClassicGame();
-    newGame.computerPick();
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
