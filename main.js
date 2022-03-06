@@ -35,14 +35,14 @@ classicModeButton.addEventListener('click', function(event){
   newGame = new Game('classic', players);
   displayClassicGame();
   newGame.computerPick();
-  newGame.calculateScore()
+  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
 malaysianModeButton.addEventListener('click', function(event){
   newGame = new Game('malaysian', players)
   displayMalaysianGame();
   newGame.computerPick();
-  newGame.calculateScore();
+  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
 })
 
 malaysianRulesButton.addEventListener('click', function(event){
@@ -52,7 +52,7 @@ malaysianRulesButton.addEventListener('click', function(event){
     newGame = new Game('malaysian', players);
     displayMalaysianGame();
     newGame.computerPick();
-    newGame.calculateScore();
+    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
 
@@ -63,7 +63,7 @@ classicRulesButton.addEventListener('click', function(event){
     newGame = new Game('classic', players);
     displayClassicGame();
     newGame.computerPick();
-    newGame.calculateScore();
+    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
   }
 })
 
@@ -143,12 +143,8 @@ function displayMalaysianGame(){
 
 
 function generateWeapon(weaponName){
-  var imgClass = weaponName.toLowerCase()
-   if(weaponName === 'Paper'){
-     return `<button class='weapon-button classic-margin'><img class='paper' src='./assets/Paper_emoji.png' alt=''></button>`;
-   } else {
-     return `<button class='weapon-button'><img class='${imgClass}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
-   }
+     return `<button class='weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
+
 }
 
 function generateGame(){
@@ -176,9 +172,11 @@ function showRules(event){
 }
 
 function setDefaultScreen(){
+  weapons.innerHTML = ""
   computerIcon.src = newGame.computerPlayer.token;
   chosenCharacter.src = newGame.userPlayer.token;
   gameplayTitle.innerText = `Pick your weapon`
+  generateGame()
 }
 
 function changeLooserIcon(winner){
@@ -201,4 +199,10 @@ function playerWon(winner){
 function displayScore(user, computer){
   computerScore.innerText = `Computer Score: ${computer}`;
   humanScore.innerText = `Your Score: ${user}`;
+}
+
+function displayChoices(userPick, computerPick){
+  weapons.innerHTML = "";
+  weapons.innerHTML += generateWeapon(userPick);
+  weapons.innerHTML += generateWeapon(computerPick);
 }
