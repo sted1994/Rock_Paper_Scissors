@@ -4,6 +4,7 @@ class Game{
     this.weapons = gameWeapons[this.type];
     this.userPlayer = players[0];
     this.computerPlayer = players[1];
+    this.disableMouse = false;
   }
 
   startingScore(){

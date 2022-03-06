@@ -67,8 +67,10 @@ classicRulesButton.addEventListener('click', function(event){
 })
 
 weapons.addEventListener('click', function(event){
-  newGame.userPlayer.weaponPick = event.target.classList;
-  newGame.findWinner();
+  if(newGame.disableMouse === false){
+    newGame.userPlayer.weaponPick = event.target.classList;
+    newGame.findWinner();
+  }
 })
 
 changeGameButton.addEventListener('click', function(){
@@ -158,7 +160,8 @@ function showRules(event){
 }
 
 function setDefaultScreen(){
-  weapons.innerHTML = ""
+  newGame.disableMouse = false;
+  weapons.innerHTML = "";
   computerIcon.src = newGame.computerPlayer.token;
   chosenCharacter.src = newGame.userPlayer.token;
   gameplayTitle.innerText = `Pick your weapon`
@@ -188,6 +191,7 @@ function displayScore(user, computer){
 }
 
 function displayChoices(userPick, computerPick){
+  newGame.disableMouse = true
   weapons.innerHTML = "";
   weapons.innerHTML += generateWeapon(userPick);
   weapons.innerHTML += generateWeapon(computerPick);
