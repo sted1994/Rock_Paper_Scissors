@@ -20,14 +20,12 @@ var gameplayTitle = document.querySelector('.gameplay-title');
 
 manCharater.addEventListener('click', function(event){
   displayGameSelection();
-  assignPlayerChar(event);
-  assignComputerChar();
+  assignCharacters(event);
 })
 
 womenCharater.addEventListener('click', function(event){
   displayGameSelection();
-  assignPlayerChar(event);
-  assignComputerChar();
+  assignCharacters(event)
 })
 
 classicModeButton.addEventListener('click', function(event){
@@ -68,7 +66,8 @@ classicRulesButton.addEventListener('click', function(event){
 
 weapons.addEventListener('click', function(event){
   if(newGame.disableMouse === false){
-    newGame.userPlayer.weaponPick = event.target.classList;
+    newGame.userPlayer.weaponPick = event.target.firstChild.classList || event.target.classList;
+    console.log(event.target.firstChild.classList)
     newGame.findWinner();
   }
 })
@@ -100,13 +99,18 @@ function countClicks(event){
   }
 }
 
-function assignPlayerChar(event){
+function assignCharacters(event){
   var newPlayer = new Player();
   newPlayer.name = event.target.parentElement.classList[0];
   newPlayer.token = event.target.src;
   chosenCharacter.src = event.target.src;
   chosenCharacter.classList.add('game-characters');
   players.push(newPlayer);
+  var computerChar = new Player();
+  computerChar.name = 'Computer';
+  computerChar.token = './assets/Computer_emoji.png';
+  computerIcon.src = computerChar.token;
+  players.push(computerChar)
 }
 
 function assignComputerChar(){
