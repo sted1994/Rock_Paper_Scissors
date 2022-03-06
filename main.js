@@ -102,8 +102,8 @@ function countClicks(event){
 function assignCharacters(event){
   var newPlayer = new Player();
   newPlayer.name = event.target.parentElement.classList[0];
-  newPlayer.token = event.target.src;
-  chosenCharacter.src = event.target.src;
+  newPlayer.token = event.target.firstChild.src || event.target.src;
+  chosenCharacter.src = event.target.firstChild.src || event.target.src;
   chosenCharacter.classList.add('game-characters');
   players.push(newPlayer);
   var computerChar = new Player();
