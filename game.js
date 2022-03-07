@@ -1,10 +1,14 @@
 class Game{
   constructor(type, players){
     this.type = type;
-    this.weapons = gameWeapons[this.type];
+    this.weapons = {
+      classic: ['rock', 'paper', 'scissor'],
+      malaysian: ['rock','bird','water','worm'],
+    };
     this.userPlayer = players[0];
     this.computerPlayer = players[1];
     this.disableMouse = false;
+    this.wea
   };
 
   findStartingScore(){
@@ -38,6 +42,15 @@ class Game{
   };
 
   checkPick(playerPick, computerPick){
+    var weaponsWeaknesses = {
+      'rock': ['paper', 'water', 'worm'],
+      'paper': ['scissor'],
+      'scissor': ['rock'],
+      'bird': ['rock'],
+      'water': ['bird'],
+      'worm': ['bird', 'water'],
+    }
+    
     if(playerPick === computerPick){
       return;
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){

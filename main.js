@@ -131,10 +131,8 @@ function generateWeapon(weaponName){
 
 function generateGame(){
   weapons.innerHTML = '';
-  var weaponsArray = gameWeapons[newGame.type];
-  for(var i = 0; i < weaponsArray.length; i ++){
-    generateWeapon(weaponsArray[i]);
-    weapons.innerHTML += generateWeapon(weaponsArray[i]);
+  for(var i = 0; i < newGame.weapons[newGame.type].length; i ++){
+    weapons.innerHTML += generateWeapon(newGame.weapons[newGame.type][i]);
   };
 };
 
