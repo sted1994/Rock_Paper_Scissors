@@ -1,3 +1,4 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~HTML Elements~~~~~~~~~~~~~~~~~~~~~~~~*/
 body{
   background-color: green;
   max-width: 100%;
@@ -7,93 +8,7 @@ body{
 button:hover{
   cursor: pointer;
 }
-
-.gameplay{
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.options{
-  align-items: center;
-  background-color: grey;
-  display:flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: space-between;
-  margin: -10px;
-  width: 50%;
-}
-
-.gameplay-buttons{
-  border-radius: 10px;
-  height: 60px;
-  margin-bottom: 15px;
-  width: 150px;
-}
-
-.rock,
-.scissor,
-.paper,
-.bird,
-.worm,
-.water{
-  border-radius: 15px;
-  margin-left: -5px;
-  width: 115px;
-}
-
-.weapon-button{
-  border-radius: 25px;
-  height: 120px;
-  width: 120px;
-}
-
-.weapons{
-  display: grid;
-  gap:10px;
-  grid-template-columns: 115px 115px;
-}
-
-.classic-margin{
-  margin-left: 60px;
-}
-
-.score{
-  align-items: center;
-  display:flex;
-  height: 100vh;
-  flex-direction: column;
-}
-
-.choose-character{
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-}
-
-.big-button{
-  border-radius: 30px;
-  font-size: 35px;
-  height: 180px;
-  inline-size: 180px;
-  overflow-wrap: break-word;
-  width: 180px;
-}
-
-.character-buttons{
-  display: flex;
-  justify-content: space-evenly;
-  width:100%;
-}
-
-.title{
-  font-size: 50px;
-  margin-top: -200px;
-  margin-bottom: 100px;
-}
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Selection~~~~~~~~~~~~~~~~~~~~~~~~*/
 .rules{
   border-radius: 15px;
   font-size: 25px;
@@ -120,6 +35,58 @@ button:hover{
   display: flex;
   flex-direction: column;
 }
+/*~~~~~~~~~~~~~~~~~~~~~~~~Character Selection~~~~~~~~~~~~~~~~~~~~~~*/
+.choose-character{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.game-characters{
+  margin-top: 175px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Play~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.gameplay{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.options{
+  align-items: center;
+  background-color: grey;
+  display:flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: space-between;
+  margin: -10px;
+  width: 50%;
+}
+
+.rock,
+.scissor,
+.paper,
+.bird,
+.worm,
+.water{
+  border-radius: 15px;
+  margin-left: -5px;
+  width: 115px;
+}
+
+.weapons{
+  display: grid;
+  gap:10px;
+  grid-template-columns: 115px 115px;
+}
+
+.score{
+  align-items: center;
+  display:flex;
+  height: 100vh;
+  flex-direction: column;
+}
 
 .player-score{
   align-items: center;
@@ -134,19 +101,45 @@ button:hover{
   flex-direction: column;
   width: 25%;
 }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Buttons~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.character-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  width:100%;
+}
 
-.game-characters{
-  margin-top: 175px;
+.gameplay-buttons{
+  border-radius: 10px;
+  height: 60px;
+  margin-bottom: 15px;
+  width: 150px;
+}
+
+.weapon-button{
+  border-radius: 25px;
+  height: 120px;
+  width: 120px;
+}
+
+.big-button{
+  border-radius: 30px;
+  font-size: 35px;
+  height: 180px;
+  inline-size: 180px;
+  overflow-wrap: break-word;
+  width: 180px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Text~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.title{
+  font-size: 50px;
+  margin-top: -200px;
+  margin-bottom: 100px;
 }
 
 .gameplay-text{
   font-size: 40px;
 }
-
-.play-button{
-  content: 'PLAY'
-}
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Hidden~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .hidden{
   display: none;
 }
