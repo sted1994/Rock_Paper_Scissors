@@ -66,8 +66,7 @@ classicRulesButton.addEventListener('click', function(event){
 
 weapons.addEventListener('click', function(event){
   if(newGame.disableMouse === false){
-    newGame.userPlayer.weaponPick = event.target.firstChild.classList || event.target.classList;
-    console.log(event.target.firstChild.classList)
+    newGame.userPlayer.weaponPick = event.target.classList
     newGame.findWinner();
   }
 })
@@ -102,8 +101,8 @@ function countClicks(event){
 function assignCharacters(event){
   var newPlayer = new Player();
   newPlayer.name = event.target.parentElement.classList[0];
-  newPlayer.token = event.target.firstChild.src || event.target.src;
-  chosenCharacter.src = event.target.firstChild.src || event.target.src;
+  newPlayer.token = event.target.src || event.target.firstChild.src;
+  chosenCharacter.src = event.target.src || event.target.firstChild.src;
   chosenCharacter.classList.add('game-characters');
   players.push(newPlayer);
   var computerChar = new Player();
@@ -135,7 +134,7 @@ function displayGame(){
 }
 
 function generateWeapon(weaponName){
-     return `<button class='weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
+     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
 }
 
 function generateGame(){
