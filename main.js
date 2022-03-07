@@ -100,15 +100,15 @@ function countClicks(event){
 
 function assignCharacters(event){
   var newPlayer = new Player();
+  var computerChar = new Player();
   newPlayer.name = event.target.parentElement.classList[0];
   newPlayer.token = event.target.src || event.target.firstChild.src;
   chosenCharacter.src = event.target.src || event.target.firstChild.src;
   chosenCharacter.classList.add('game-characters');
-  players.push(newPlayer);
-  var computerChar = new Player();
   computerChar.name = 'Computer';
   computerChar.token = './assets/Computer_emoji.png';
   computerIcon.src = computerChar.token;
+  players.push(newPlayer);
   players.push(computerChar);
 };
 
@@ -139,7 +139,10 @@ function generateGame(){
 };
 
 function generateRules(rules){
-  return `<button class='classic big-button' style='font-size: 21px'>${rules}</button>`;
+  if(rules === "Bird > Worm Bird > Water Rock > Bird Water > Rock Worm > Rock"){
+    return `<button class='rules big-button' style='font-size: 24px'>${rules}</button>`;
+  }
+  return `<button class='rules big-button' style='font-size: 21px'>${rules}</button>`;
 };
 
 function showRules(event){
@@ -166,7 +169,7 @@ function setDefaultScreen(){
 function changeLooserIcon(winner){
   computerIcon.src = winner.token;
   chosenCharacter.src = winner.token;
-}
+};
 
 function playerWon(winner){
   if(winner === 'Draw'){
