@@ -6,7 +6,6 @@ var gameWeapons = {
   classic: ['rock', 'paper', 'scissor'],
   malaysian: ['rock','bird','water','worm'],
 };
-
 var weaponsWeaknesses = {
   'rock': ['paper', 'water', 'worm'],
   'paper': ['scissor'],

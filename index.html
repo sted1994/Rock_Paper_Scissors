@@ -6,51 +6,52 @@
   </head>
   <body>
    <section class='choose-character'>
-      <div class='title'>
+      <header class='title'>
         <p>Please Choose Your Character!</p>
-      </div>
-      <div class='character-buttons'>
-        <button class='man big-button'><img src='./assets/Man_emoji.png' alt=''></button>
-        <button class='woman big-button'><img src='./assets/Woman_emoji.png' alt=''></button>
-      </div>
+      </header>
+      <section class='character-buttons'>
+        <button class='man big-button'><img src='./assets/Man_emoji.png' alt='Man character'></button>
+        <button class='woman big-button'><img src='./assets/Woman_emoji.png' alt='Women character'></button>
+      </section>
     </section>
     <section class='game-selection hidden'>
-      <div class='title'>
+      <header class='title'>
         <p>Choose Your Game Mode</P>
-      </div>
-      <div class='game-modes'>
-        <div class='classic-game-button'>
+      </header>
+      <section class='game-modes'>
+        <section class='classic-game-button'>
           <div>
             <button class='classic big-button'>Classic</button>
           </div>
           <div>
             <button class='classic-rules rules'>Rules</button>
           </div>
-        </div>
-        <div class='malaysian-game-button'>
+        </section>
+        <section class='malaysian-game-button'>
           <div>
             <button class='malaysian big-button'>Malaysian</button>
           </div>
           <div>
             <button class='malaysian-rules rules'>Rules</button>
           </div>
-        </div>
-      </div>
+        </section>
+      </section>
     </section>
     <section class='gameplay hidden'>
       <aside class='player-score'>
-        <div>
+        <header>
           <p class='human-score gameplay-text'></p>
-        </div>
+        </header>
         <div>
           <img class='chosen-character' src='' alt='Your character'>
         </div>
       </aside>
       <main class='options'>
-        <section>
+        <header>
           <p class='gameplay-title gameplay-text'>Pick Your Weapon</p>
-        </section>
+        </header>
         <section class='weapons'>
+          /* this will be where weapons are generates */
         </section>
         <section>
           <button class='change-game gameplay-buttons'>Change Game</button>
@@ -58,11 +59,11 @@
         </section>
       </main>
       <aside class='computer-score'>
-        <div>
+        <header>
           <p class='machine-score gameplay-text'></p>
-        </div>
+        </header>
         <div class='game-characters'>
-          <img class='user-opponent' src='' alt='Your character'>
+          <img class='user-opponent' src='' alt='Computer character'>
         </div>
       </aside>
     </section>

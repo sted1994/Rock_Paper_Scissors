@@ -5,49 +5,45 @@ class Game{
     this.userPlayer = players[0];
     this.computerPlayer = players[1];
     this.disableMouse = false;
-  }
+  };
 
-  startingScore(){
+  findStartingScore(){
     this.computerPlayer.initialWins= this.computerPlayer.wins;
     this.userPlayer.initialWins = this.userPlayer.wins;
-  }
+  };
 
   findWinner(){
     this.computerPlayer.takeTurn();
-    this.startingScore();
+    this.findStartingScore();
     this.checkPick(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
-    displayScore(this.userPlayer.wins, this.computerPlayer.wins)
-    this.calculateScore();
-  }
+    displayScore(this.userPlayer.wins, this.computerPlayer.wins);
+    this.showWinner();
+  };
 
-
-
-  calculateScore(){
-    if (this.computerPlayer.initialWins === undefined && this.userPlayer.initialWins === undefined){
-      return
-    } else if (this.computerPlayer.initialWins < this.computerPlayer.wins){
-      playerWon(this.computerPlayer)
+  showWinner(){
+     if (this.computerPlayer.initialWins < this.computerPlayer.wins){
+      playerWon(this.computerPlayer);
     } else if(this.userPlayer.initialWins < this.userPlayer.wins){
-      playerWon(this.userPlayer)
+      playerWon(this.userPlayer);
     }else{
-      playerWon('Draw')
-    }
-    displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick)
-    setTimeout(setDefaultScreen, 3000);
-  }
+      playerWon('Draw');
+    };
+    displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick);
+    setTimeout(setDefaultScreen, 1700);
+  };
 
   resetScore(){
     this.userPlayer.wins = 0;
     this.computerPlayer.wins = 0;
-  }
+  };
 
   checkPick(playerPick, computerPick){
     if(playerPick === computerPick){
-      return
+      return;
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){
-      this.computerPlayer.wins++
+      this.computerPlayer.wins++;
     } else {
-      this.userPlayer.wins++
-    }
-  }
-}
+      this.userPlayer.wins++;
+    };
+  };
+};

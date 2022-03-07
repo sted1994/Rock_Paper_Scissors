@@ -1,33 +1,67 @@
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~HTML Elements~~~~~~~~~~~~~~~~~~~~~~~~*/
 body{
-  max-width: 100%;
   background-color: green;
+  max-width: 100%;
   overflow-y: hidden;
 }
 
 button:hover{
   cursor: pointer;
 }
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Selection~~~~~~~~~~~~~~~~~~~~~~~~*/
+.rules{
+  border-radius: 15px;
+  font-size: 25px;
+  margin-top: 15px;
+  width: 180px;
+}
+
+.game-selection{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.game-modes{
+  display: flex;
+  justify-content: space-evenly;
+  width:100%;
+}
+
+.classic-game-button,
+.malaysian-game-button{
+  display: flex;
+  flex-direction: column;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~Character Selection~~~~~~~~~~~~~~~~~~~~~~*/
+.choose-character{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.game-characters{
+  margin-top: 175px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Play~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .gameplay{
   display: flex;
   justify-content: space-evenly;
 }
 
 .options{
+  align-items: center;
   background-color: grey;
-  height: 100vh;
-  width: 50%;
-  margin: -10px;
   display:flex;
   flex-direction: column;
-  align-items: center;
+  height: 100vh;
   justify-content: space-between;
-}
-
-.gameplay-buttons{
-  margin-bottom: 15px;
-  height: 60px;
-  width: 150px;
-  border-radius: 10px;
+  margin: -10px;
+  width: 50%;
 }
 
 .rock,
@@ -36,115 +70,74 @@ button:hover{
 .bird,
 .worm,
 .water{
-  width: 100px;
-}
-
-.weapon-button{
-  height: 120px;
-  width: 120px;
-  border-radius: 25px;
+  border-radius: 15px;
+  margin-left: -5px;
+  width: 115px;
 }
 
 .weapons{
   display: grid;
-  grid-template-columns: 115px 115px;
   gap:10px;
-}
-
-.classic-margin{
-  margin-left: 60px;
+  grid-template-columns: 115px 115px;
 }
 
 .score{
-  height: 100vh;
+  align-items: center;
   display:flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.choose-character{
   height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.big-button{
-  border-radius: 30px;
-  height: 180px;
-  width: 180px;
-  font-size: 35px;
-  inline-size: 180px;
-  overflow-wrap: break-word;
-}
-
-.character-buttons{
-  width:100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.title{
-  margin-top: -200px;
-  margin-bottom: 100px;
-  font-size: 50px;
-}
-
-.rules{
-  font-size: 25px;
-  border-radius: 15px;
-  margin-top: 15px;
-  width: 180px;
-}
-
-.game-selection{
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.game-modes{
-  display: flex;
-  width:100%;
-  display: flex;
-  justify-content: space-evenly;
-}
-
-.classic-game-button,
-.malaysian-game-button{
-  display: flex;
   flex-direction: column;
 }
 
 .player-score{
-  width: 25%;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 25%;
 }
 
 .computer-score{
-  width: 25%;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  width: 25%;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Buttons~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.character-buttons{
+  display: flex;
+  justify-content: space-evenly;
+  width:100%;
 }
 
-.game-characters{
-  margin-top: 175px;
+.gameplay-buttons{
+  border-radius: 10px;
+  height: 60px;
+  margin-bottom: 15px;
+  width: 150px;
+}
+
+.weapon-button{
+  border-radius: 25px;
+  height: 120px;
+  width: 120px;
+}
+
+.big-button{
+  border-radius: 30px;
+  font-size: 35px;
+  height: 180px;
+  width: 180px;
+}
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Text~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
+.title{
+  font-size: 50px;
+  margin-top: -200px;
+  margin-bottom: 100px;
 }
 
 .gameplay-text{
   font-size: 40px;
 }
-
-.play-button{
-  content: 'PLAY'
-}
-
+/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Hidden~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .hidden{
   display: none;
 }
