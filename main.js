@@ -21,26 +21,26 @@ var gameplayTitle = document.querySelector('.gameplay-title');
 manCharater.addEventListener('click', function(event){
   displayGameSelection();
   assignCharacters(event);
-})
+});
 
 womenCharater.addEventListener('click', function(event){
   displayGameSelection();
-  assignCharacters(event)
-})
+  assignCharacters(event);
+});
 
 classicModeButton.addEventListener('click', function(event){
   newGame = new Game('classic', players);
   displayGame();
-  generateGame()
-  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
-})
+  generateGame();
+  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
+});
 
 malaysianModeButton.addEventListener('click', function(event){
   newGame = new Game('malaysian', players)
   displayGame();
-  generateGame()
-  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
-})
+  generateGame();
+  displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
+});
 
 malaysianRulesButton.addEventListener('click', function(event){
   countClicks(event);
@@ -48,10 +48,10 @@ malaysianRulesButton.addEventListener('click', function(event){
   if(malaysianRuleClicks >= 2){
     newGame = new Game('malaysian', players);
     displayGame();
-    generateGame()
-    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
-  }
-})
+    generateGame();
+    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
+  };
+});
 
 classicRulesButton.addEventListener('click', function(event){
   countClicks(event);
@@ -59,44 +59,44 @@ classicRulesButton.addEventListener('click', function(event){
   if(classicRuleClicks >= 2){
     newGame = new Game('classic', players);
     displayGame();
-    generateGame()
-    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins)
-  }
-})
+    generateGame();
+    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
+  };
+});
 
 weapons.addEventListener('click', function(event){
   if(newGame.disableMouse === false){
-    newGame.userPlayer.weaponPick = event.target.classList
+    newGame.userPlayer.weaponPick = event.target.classList;
     newGame.findWinner();
-  }
-})
+  };
+});
 
 changeGameButton.addEventListener('click', function(){
   displayGameSelection();
-})
+});
 
 scoreReset.addEventListener('click', function(){
   newGame.resetScore();
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
-})
+});
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 function hideElement(htmlElement){
   htmlElement.classList.add('hidden');
-}
+};
 
 function showElement(htmlElement){
   htmlElement.classList.remove('hidden');
-}
+};
 
 function countClicks(event){
   if(event.target.classList[0] === 'classic-rules'){
     classicRuleClicks++;
   } else if(event.target.classList[0] === 'malaysian-rules'){
     malaysianRuleClicks++;
-  }
-}
+  };
+};
 
 function assignCharacters(event){
   var newPlayer = new Player();
@@ -109,67 +109,59 @@ function assignCharacters(event){
   computerChar.name = 'Computer';
   computerChar.token = './assets/Computer_emoji.png';
   computerIcon.src = computerChar.token;
-  players.push(computerChar)
-}
-
-function assignComputerChar(){
-  var computerChar = new Player();
-  computerChar.name = 'Computer';
-  computerChar.token = './assets/Computer_emoji.png';
-  computerIcon.src = computerChar.token;
-  players.push(computerChar)
-}
+  players.push(computerChar);
+};
 
 function displayGameSelection(){
   weapons.innerHTML = '';
   hideElement(characterSelectionPage);
   showElement(gameSelectionPage);
   hideElement(gameplayPage);
-}
+};
 
 function displayGame(){
   showElement(gameplayPage);
   hideElement(gameSelectionPage);
   hideElement(characterSelectionPage);
-}
+};
 
 function generateWeapon(weaponName){
      return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
-}
+};
 
 function generateGame(){
   weapons.innerHTML = '';
-  var weaponsArray = gameWeapons[newGame.type]
+  var weaponsArray = gameWeapons[newGame.type];
   for(var i = 0; i < weaponsArray.length; i ++){
-    generateWeapon(weaponsArray[i])
+    generateWeapon(weaponsArray[i]);
     weapons.innerHTML += generateWeapon(weaponsArray[i]);
-  }
-}
+  };
+};
 
 function generateRules(rules){
   return `<button class='classic big-button' style='font-size: 21px'>${rules}</button>`;
-}
+};
 
 function showRules(event){
-  var rulesSibling = event.target.parentElement.previousElementSibling
-  var classicRules = 'Rock > Scissors Rock < Paper Paper < Scissors'
-  var malaysianRules = 'Bird > Worm Bird > Water Rock > Bird Water > Rock Worm > Rock'
-  event.target.innerText = 'PLAY'
+  var rulesSibling = event.target.parentElement.previousElementSibling;
+  var classicRules = 'Rock > Scissors Rock < Paper Paper < Scissors';
+  var malaysianRules = 'Bird > Worm Bird > Water Rock > Bird Water > Rock Worm > Rock';
+  event.target.innerText = 'PLAY';
   if(rulesSibling.innerText === 'Classic'){
-    rulesSibling.innerHTML = generateRules(classicRules)
+    rulesSibling.innerHTML = generateRules(classicRules);
   } else if(rulesSibling.innerText === 'Malaysian'){
-    rulesSibling.innerHTML = generateRules(malaysianRules)
-  }
-}
+    rulesSibling.innerHTML = generateRules(malaysianRules);
+  };
+};
 
 function setDefaultScreen(){
   newGame.disableMouse = false;
   weapons.innerHTML = "";
   computerIcon.src = newGame.computerPlayer.token;
   chosenCharacter.src = newGame.userPlayer.token;
-  gameplayTitle.innerText = `Pick your weapon`
-  generateGame()
-}
+  gameplayTitle.innerText = `Pick your weapon`;
+  generateGame();
+};
 
 function changeLooserIcon(winner){
   computerIcon.src = winner.token;
@@ -178,24 +170,24 @@ function changeLooserIcon(winner){
 
 function playerWon(winner){
   if(winner === 'Draw'){
-    gameplayTitle.innerText = 'Its a draw!!'
+    gameplayTitle.innerText = 'Its a draw!!';
   } else if(winner.name === 'Computer'){
-    gameplayTitle.innerText = `${winner.name} won this round!!`
-    changeLooserIcon(winner)
+    gameplayTitle.innerText = `${winner.name} won this round!!`;
+    changeLooserIcon(winner);
   } else {
-    gameplayTitle.innerText = `You won this round!!`
-    changeLooserIcon(winner)
-  }
-}
+    gameplayTitle.innerText = `You won this round!!`;
+    changeLooserIcon(winner);
+  };
+};
 
 function displayScore(user, computer){
   computerScore.innerText = `Computer Score: ${computer}`;
   humanScore.innerText = `Your Score: ${user}`;
-}
+};
 
 function displayChoices(userPick, computerPick){
-  newGame.disableMouse = true
+  newGame.disableMouse = true;
   weapons.innerHTML = "";
   weapons.innerHTML += generateWeapon(userPick);
   weapons.innerHTML += generateWeapon(computerPick);
-}
+};
