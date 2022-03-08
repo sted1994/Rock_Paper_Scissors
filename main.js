@@ -17,7 +17,6 @@ var computerScore = document.querySelector('.machine-score');
 var scoreReset = document.querySelector('.game-reset');
 var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 manCharater.addEventListener('click', function(event){
   displayGameSelection();
   assignCharacters(event);
@@ -66,21 +65,27 @@ classicRulesButton.addEventListener('click', function(event){
 
 weapons.addEventListener('click', function(event){
   if(newGame.disableMouse === false){
-    newGame.userPlayer.weaponPick = event.target.classList;
-    newGame.findWinner();
+    newGame.userPlayer.takeTurn(event.target.classList);
+    var winner = newGame.findWinner();
+    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
+    displayChoices(newGame.userPlayer.weaponPick, newGame.computerPlayer.weaponPick);
+    playerWon(winner)
+    changeLooserIcon(winner)
+    setTimeout(setDefaultScreen, 1700);
   };
 });
 
-changeGameButton.addEventListener('click', function(){
-  displayGameSelection();
-});
+changeGameButton.addEventListener('click', displayGameSelection);
 
 scoreReset.addEventListener('click', function(){
   newGame.resetScore();
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
 });
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function showWinner(){
+  displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick);
+  setTimeout(setDefaultScreen, 1700);
+};
 
 function hideElement(htmlElement){
   htmlElement.classList.add('hidden');
@@ -101,7 +106,7 @@ function countClicks(event){
 function assignCharacters(event){
   var newPlayer = new Player();
   var computerChar = new Player();
-  newPlayer.name = event.target.parentElement.classList[0];
+  newPlayer.name = 'You';
   newPlayer.token = event.target.src || event.target.firstChild.src;
   chosenCharacter.src = event.target.src || event.target.firstChild.src;
   chosenCharacter.classList.add('game-characters');
@@ -131,8 +136,8 @@ function generateWeapon(weaponName){
 
 function generateGame(){
   weapons.innerHTML = '';
-  for(var i = 0; i < newGame.weapons[newGame.type].length; i ++){
-    weapons.innerHTML += generateWeapon(newGame.weapons[newGame.type][i]);
+  for(var i = 0; i < newGame.weapons.length; i ++){
+    weapons.innerHTML += generateWeapon(newGame.weapons[i]);
   };
 };
 
@@ -165,19 +170,17 @@ function setDefaultScreen(){
 };
 
 function changeLooserIcon(winner){
-  computerIcon.src = winner.token;
-  chosenCharacter.src = winner.token;
+  if(winner){
+    computerIcon.src = winner.token;
+    chosenCharacter.src = winner.token;
+  }
 };
 
 function playerWon(winner){
-  if(winner === 'Draw'){
+  if(!winner){
     gameplayTitle.innerText = 'Its a draw!!';
-  } else if(winner.name === 'Computer'){
-    gameplayTitle.innerText = `${winner.name} won this round!!`;
-    changeLooserIcon(winner);
   } else {
-    gameplayTitle.innerText = `You won this round!!`;
-    changeLooserIcon(winner);
+    gameplayTitle.innerText = `${winner.name} won this round!!`;
   };
 };
 

@@ -1,62 +1,55 @@
 class Game{
   constructor(type, players){
-    this.type = type;
-    this.weapons = {
+    var weapons = {
       classic: ['rock', 'paper', 'scissor'],
       malaysian: ['rock','bird','water','worm'],
     };
+    this.weapons = weapons[type];
+    this.type = type;
     this.userPlayer = players[0];
     this.computerPlayer = players[1];
     this.disableMouse = false;
-    this.wea
   };
 
-  findStartingScore(){
-    this.computerPlayer.initialWins= this.computerPlayer.wins;
-    this.userPlayer.initialWins = this.userPlayer.wins;
-  };
+  computerPick(){
+    var randomIndex = Math.floor(Math.random() * this.weapons.length)
+    var weapon = this.weapons[randomIndex]
+    this.computerPlayer.takeTurn(weapon)
+  }
 
   findWinner(){
-    this.computerPlayer.takeTurn();
-    this.findStartingScore();
-    this.checkPick(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
-    displayScore(this.userPlayer.wins, this.computerPlayer.wins);
-    this.showWinner();
+    this.computerPick();
+    var winner = this.checkWinner(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
+    this.setWinner(winner)
+    return winner;
   };
 
-  showWinner(){
-     if (this.computerPlayer.initialWins < this.computerPlayer.wins){
-      playerWon(this.computerPlayer);
-    } else if(this.userPlayer.initialWins < this.userPlayer.wins){
-      playerWon(this.userPlayer);
-    }else{
-      playerWon('Draw');
-    };
-    displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick);
-    setTimeout(setDefaultScreen, 1700);
-  };
+  setWinner(winner){
+    if(winner){
+      winner.wins++
+    }
+  }
 
   resetScore(){
     this.userPlayer.wins = 0;
     this.computerPlayer.wins = 0;
   };
 
-  checkPick(playerPick, computerPick){
+  checkWinner(playerPick, computerPick){
     var weaponsWeaknesses = {
-      'rock': ['paper', 'water', 'worm'],
-      'paper': ['scissor'],
-      'scissor': ['rock'],
-      'bird': ['rock'],
-      'water': ['bird'],
-      'worm': ['bird', 'water'],
+      rock: ['paper', 'water', 'worm'],
+      paper: ['scissor'],
+      scissor: ['rock'],
+      bird: ['rock'],
+      water: ['bird'],
+      worm: ['bird', 'water'],
     }
-    
     if(playerPick === computerPick){
       return;
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){
-      this.computerPlayer.wins++;
+      return this.computerPlayer;
     } else {
-      this.userPlayer.wins++;
+      return this.userPlayer;
     };
   };
 };
