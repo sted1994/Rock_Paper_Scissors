@@ -65,16 +65,17 @@ classicRulesButton.addEventListener('click', function(event){
 });
 
 weapons.addEventListener('click', function(event){
-  console.log("stringEvent" , event)
   if(newGame.disableMouse === false){
     newGame.userPlayer.takeTurn(event.target.classList);
-    newGame.findWinner();
+    var winner = newGame.findWinner();
+    displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
+    displayChoices(newGame.userPlayer.weaponPick, newGame.computerPlayer.weaponPick);
+    playerWon(winner)
+    setTimeout(setDefaultScreen, 1700);
   };
 });
 
-changeGameButton.addEventListener('click', function(){
-  displayGameSelection();
-});
+changeGameButton.addEventListener('click', displayGameSelection);
 
 scoreReset.addEventListener('click', function(){
   newGame.resetScore();
@@ -82,6 +83,10 @@ scoreReset.addEventListener('click', function(){
 });
 
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+function showWinner(){
+  displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick);
+  setTimeout(setDefaultScreen, 1700);
+};
 
 function hideElement(htmlElement){
   htmlElement.classList.add('hidden');
@@ -171,10 +176,12 @@ function changeLooserIcon(winner){
 };
 
 function playerWon(winner){
-  if(winner === 'Draw'){
+  if(!winner){
     gameplayTitle.innerText = 'Its a draw!!';
   } else if(winner.name === 'Computer'){
+
     gameplayTitle.innerText = `${winner.name} won this round!!`;
+
     changeLooserIcon(winner);
   } else {
     gameplayTitle.innerText = `You won this round!!`;

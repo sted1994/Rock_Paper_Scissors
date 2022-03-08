@@ -17,25 +17,25 @@ class Game{
     this.computerPlayer.takeTurn(weapon)
   }
 
-
   findWinner(){
     this.computerPick();
-    this.checkPick(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
-    displayScore(this.userPlayer.wins, this.computerPlayer.wins);
-    this.showWinner();
+    var winner = this.checkWinner(this.userPlayer.weaponPick.value, this.computerPlayer.weaponPick);
+    this.setWinner(winner)
+    return winner;
   };
 
-  showWinner(){
-    displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick);
-    setTimeout(setDefaultScreen, 1700);
-  };
+  setWinner(winner){
+    if(winner){
+      winner.wins++
+    }
+  }
 
   resetScore(){
     this.userPlayer.wins = 0;
     this.computerPlayer.wins = 0;
   };
 
-  checkPick(playerPick, computerPick){
+  checkWinner(playerPick, computerPick){
     var weaponsWeaknesses = {
       'rock': ['paper', 'water', 'worm'],
       'paper': ['scissor'],
@@ -46,14 +46,11 @@ class Game{
     }
 
     if(playerPick === computerPick){
-      playerWon('Draw');
       return;
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){
-      this.computerPlayer.wins++;
-      playerWon(this.computerPlayer);
+      return this.computerPlayer;
     } else {
-      this.userPlayer.wins++;
-      playerWon(this.userPlayer)
+      return this.userPlayer;
     };
   };
 };
