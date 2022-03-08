@@ -37,14 +37,13 @@ class Game{
 
   checkWinner(playerPick, computerPick){
     var weaponsWeaknesses = {
-      'rock': ['paper', 'water', 'worm'],
-      'paper': ['scissor'],
-      'scissor': ['rock'],
-      'bird': ['rock'],
-      'water': ['bird'],
-      'worm': ['bird', 'water'],
+      rock: ['paper', 'water', 'worm'],
+      paper: ['scissor'],
+      scissor: ['rock'],
+      bird: ['rock'],
+      water: ['bird'],
+      worm: ['bird', 'water'],
     }
-
     if(playerPick === computerPick){
       return;
     } else if(weaponsWeaknesses[playerPick].includes(computerPick)){

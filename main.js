@@ -17,7 +17,6 @@ var computerScore = document.querySelector('.machine-score');
 var scoreReset = document.querySelector('.game-reset');
 var gameplayTitle = document.querySelector('.gameplay-title');
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Event Listeners~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 manCharater.addEventListener('click', function(event){
   displayGameSelection();
   assignCharacters(event);
@@ -82,7 +81,6 @@ scoreReset.addEventListener('click', function(){
   newGame.resetScore();
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
 });
-
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Functions~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function showWinner(){
   displayChoices(this.userPlayer.weaponPick, this.computerPlayer.weaponPick);
