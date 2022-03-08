@@ -65,8 +65,9 @@ classicRulesButton.addEventListener('click', function(event){
 });
 
 weapons.addEventListener('click', function(event){
+  console.log("stringEvent" , event)
   if(newGame.disableMouse === false){
-    newGame.userPlayer.weaponPick = event.target.classList;
+    newGame.userPlayer.takeTurn(event.target.classList);
     newGame.findWinner();
   };
 });
@@ -131,8 +132,8 @@ function generateWeapon(weaponName){
 
 function generateGame(){
   weapons.innerHTML = '';
-  for(var i = 0; i < newGame.weapons[newGame.type].length; i ++){
-    weapons.innerHTML += generateWeapon(newGame.weapons[newGame.type][i]);
+  for(var i = 0; i < newGame.weapons.length; i ++){
+    weapons.innerHTML += generateWeapon(newGame.weapons[i]);
   };
 };
 
