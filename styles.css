@@ -8,6 +8,18 @@ body{
 button:hover{
   cursor: pointer;
 }
+/*~~~~~~~~~~~~~~~~~~~~~~~~Character Selection~~~~~~~~~~~~~~~~~~~~~~*/
+.choose-character{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.game-characters{
+  margin-top: 175px;
+}
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Selection~~~~~~~~~~~~~~~~~~~~~~~~*/
 .rules{
   border-radius: 15px;
@@ -34,18 +46,6 @@ button:hover{
 .malaysian-game-button{
   display: flex;
   flex-direction: column;
-}
-/*~~~~~~~~~~~~~~~~~~~~~~~~Character Selection~~~~~~~~~~~~~~~~~~~~~~*/
-.choose-character{
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  justify-content: center;
-}
-
-.game-characters{
-  margin-top: 175px;
 }
 /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Game Play~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
 .gameplay{
@@ -88,13 +88,7 @@ button:hover{
   flex-direction: column;
 }
 
-.player-score{
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  width: 25%;
-}
-
+.player-score,
 .computer-score{
   align-items: center;
   display: flex;
