@@ -71,6 +71,7 @@ weapons.addEventListener('click', function(event){
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
     displayChoices(newGame.userPlayer.weaponPick, newGame.computerPlayer.weaponPick);
     playerWon(winner)
+    changeLooserIcon(winner)
     setTimeout(setDefaultScreen, 1700);
   };
 });
@@ -107,7 +108,7 @@ function countClicks(event){
 function assignCharacters(event){
   var newPlayer = new Player();
   var computerChar = new Player();
-  newPlayer.name = event.target.parentElement.classList[0];
+  newPlayer.name = 'You';
   newPlayer.token = event.target.src || event.target.firstChild.src;
   chosenCharacter.src = event.target.src || event.target.firstChild.src;
   chosenCharacter.classList.add('game-characters');
@@ -171,21 +172,17 @@ function setDefaultScreen(){
 };
 
 function changeLooserIcon(winner){
-  computerIcon.src = winner.token;
-  chosenCharacter.src = winner.token;
+  if(winner){
+    computerIcon.src = winner.token;
+    chosenCharacter.src = winner.token;
+  }
 };
 
 function playerWon(winner){
   if(!winner){
     gameplayTitle.innerText = 'Its a draw!!';
-  } else if(winner.name === 'Computer'){
-
-    gameplayTitle.innerText = `${winner.name} won this round!!`;
-
-    changeLooserIcon(winner);
   } else {
-    gameplayTitle.innerText = `You won this round!!`;
-    changeLooserIcon(winner);
+    gameplayTitle.innerText = `${winner.name} won this round!!`;
   };
 };
 
