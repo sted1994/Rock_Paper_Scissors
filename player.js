@@ -8,6 +8,6 @@ class Player{
   }
 
   takeTurn(){
-    this.weaponPick = newGame.weapons[Math.floor(Math.random() * newGame.weapons.length)]
+    this.weaponPick = newGame.weapons[newGame.type][Math.floor(Math.random() * newGame.weapons[newGame.type].length)]
   }
 }
