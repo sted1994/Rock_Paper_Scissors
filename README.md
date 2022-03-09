@@ -2,6 +2,7 @@
 Play rock paper scissors and a variation against a computer.
 
 ##### Deploy link
+https://sted1994.github.io/Rock_Paper_Scissors/
 
 #### Description
 This site will allow you to play rock paper scissors against a computer. There is also a variation of the classic game that allows you to
