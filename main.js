@@ -1,6 +1,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~DOM Elements~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-var manCharater = document.querySelector('.man');
-var womenCharater = document.querySelector('.woman');
+var manCharater = document.querySelector('.Man');
+var womenCharater = document.querySelector('.Woman');
 var gameSelectionPage = document.querySelector('.game-selection');
 var chosenCharacter = document.querySelector('.chosen-character');
 var computerIcon = document.querySelector('.user-opponent');
@@ -131,7 +131,8 @@ function displayGame(){
 };
 
 function generateWeapon(weaponName){
-     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='assets/${weaponName}_emoji.png' alt=''></button>`;
+  var weaponSrc = weaponName.charAt(0).toUpperCase() + weaponName.slice(1)
+     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='assets/${weaponSrc}_emoji.png' alt=''></button>`;
 };
 
 function generateGame(){
