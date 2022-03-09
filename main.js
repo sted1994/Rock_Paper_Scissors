@@ -132,8 +132,7 @@ function displayGame(){
 
 function generateWeapon(weaponName){
   var weaponSrc = weaponName.charAt(0).toUpperCase() + weaponName.slice(1);
-  var weaponClasses = weaponName.charAt(0).toLowerCase() + weaponName.slice(1);
-     return `<button class='${weaponClasses} weapon-button'><img class='${weaponClasses}' src='assets/${weaponSrc}_emoji.png' alt=''></button>`;
+     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='assets/${weaponSrc}_emoji.png' alt=''></button>`;
 };
 
 function generateGame(){
@@ -192,8 +191,8 @@ function displayScore(user, computer){
 };
 
 function displayChoices(userPick, computerPick){
-  var userWeapon = userPick.value.charAt(0).toUpperCase() + userPick.value.slice(1);
-  var cpuWeapon = computerPick.charAt(0).toUpperCase() + computerPick.slice(1);
+  var userWeapon = userPick.value.charAt(0).toLowerCase() + userPick.value.slice(1);
+  var cpuWeapon = computerPick.charAt(0).toLowerCase() + computerPick.slice(1);
   newGame.disableMouse = true;
   weapons.innerHTML = "";
   weapons.innerHTML += generateWeapon(userWeapon);
