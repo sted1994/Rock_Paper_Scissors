@@ -35,7 +35,7 @@ classicModeButton.addEventListener('click', function(event){
 });
 
 malaysianModeButton.addEventListener('click', function(event){
-  newGame = new Game('malaysian', players)
+  newGame = new Game('malaysian', players);
   displayGame();
   generateGame();
   displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
@@ -69,8 +69,8 @@ weapons.addEventListener('click', function(event){
     var winner = newGame.findWinner();
     displayScore(newGame.userPlayer.wins, newGame.computerPlayer.wins);
     displayChoices(newGame.userPlayer.weaponPick, newGame.computerPlayer.weaponPick);
-    playerWon(winner)
-    changeLooserIcon(winner)
+    playerWon(winner);
+    changeLooserIcon(winner);
     setTimeout(setDefaultScreen, 1700);
   };
 });
@@ -131,8 +131,9 @@ function displayGame(){
 };
 
 function generateWeapon(weaponName){
-  var weaponSrc = weaponName.charAt(0).toUpperCase() + weaponName.slice(1)
-     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='assets/${weaponSrc}_emoji.png' alt=''></button>`;
+  var weaponSrc = weaponName.charAt(0).toUpperCase() + weaponName.slice(1);
+  var weaponClasses = weaponName.charAt(0).toLowerCase() + weaponName.slice(1);
+     return `<button class='${weaponClasses} weapon-button'><img class='${weaponClasses}' src='assets/${weaponSrc}_emoji.png' alt=''></button>`;
 };
 
 function generateGame(){
@@ -191,8 +192,10 @@ function displayScore(user, computer){
 };
 
 function displayChoices(userPick, computerPick){
+  var userWeapon = userPick.value.charAt(0).toUpperCase() + userPick.value.slice(1);
+  var cpuWeapon = computerPick.charAt(0).toUpperCase() + computerPick.slice(1);
   newGame.disableMouse = true;
   weapons.innerHTML = "";
-  weapons.innerHTML += generateWeapon(userPick);
-  weapons.innerHTML += generateWeapon(computerPick);
+  weapons.innerHTML += generateWeapon(userWeapon);
+  weapons.innerHTML += generateWeapon(cpuWeapon);
 };
