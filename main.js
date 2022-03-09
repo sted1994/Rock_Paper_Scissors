@@ -131,7 +131,7 @@ function displayGame(){
 };
 
 function generateWeapon(weaponName){
-     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='./assets/${weaponName}_emoji.png' alt=''></button>`;
+     return `<button class='${weaponName} weapon-button'><img class='${weaponName}' src='assets/${weaponName}_emoji.png' alt=''></button>`;
 };
 
 function generateGame(){
